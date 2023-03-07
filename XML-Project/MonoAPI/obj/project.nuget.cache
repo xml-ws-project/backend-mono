@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "qBhPrMEgrNT8XOUax4Nb+M5gk9yeAsvywOg/pQafGSvPEiZgkAJ08UcPtcmPijRuUuf63L80RKjhNBxL/ibu6w==",
+  "success": true,
+  "projectFilePath": "D:\\FTN\\IV Godina\\XML-Project\\backend\\XML-Project\\MonoAPI\\MonoAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Andrija\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512"
+  ],
+  "logs": []
+}
