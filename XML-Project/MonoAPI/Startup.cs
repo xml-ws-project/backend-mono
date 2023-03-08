@@ -53,6 +53,11 @@ namespace MonoAPI
                 });
             
             }
+
+            app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
         }
     }
 }
