@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Tws/3Ezq1WYq6JKBIFvjPftavPLiB2iL3JpVZlwcvSa1TzOno8ufTcsDCGZlOgWmopJLEVOKb6chFmVmnJj7UQ==",
+  "dgSpecHash": "+lbtO7QXtARXxYxITK8M9ekY5tKhy/lM8TYaoK5GO+jxGyelwdhtYLsovikpWVaC79jHFZK2XcY+wp+QkKxmYQ==",
   "success": true,
-  "projectFilePath": "D:\\FTN\\IV Godina\\XML-Project\\backend\\XML-Project\\MonoLibrary\\MonoLibrary.csproj",
+  "projectFilePath": "D:\\FTN\\IV Godina\\XML-Project\\backend-mono\\XML-Project\\MonoLibrary\\MonoLibrary.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

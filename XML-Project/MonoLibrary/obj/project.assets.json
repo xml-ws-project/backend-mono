@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FTN\\IV Godina\\XML-Project\\backend\\XML-Project\\MonoLibrary\\MonoLibrary.csproj",
+      "projectUniqueName": "D:\\FTN\\IV Godina\\XML-Project\\backend-mono\\XML-Project\\MonoLibrary\\MonoLibrary.csproj",
       "projectName": "MonoLibrary",
-      "projectPath": "D:\\FTN\\IV Godina\\XML-Project\\backend\\XML-Project\\MonoLibrary\\MonoLibrary.csproj",
+      "projectPath": "D:\\FTN\\IV Godina\\XML-Project\\backend-mono\\XML-Project\\MonoLibrary\\MonoLibrary.csproj",
       "packagesPath": "C:\\Users\\Andrija\\.nuget\\packages\\",
-      "outputPath": "D:\\FTN\\IV Godina\\XML-Project\\backend\\XML-Project\\MonoLibrary\\obj\\",
+      "outputPath": "D:\\FTN\\IV Godina\\XML-Project\\backend-mono\\XML-Project\\MonoLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Andrija\\AppData\\Roaming\\NuGet\\NuGet.Config",
