@@ -2,7 +2,11 @@
 using Microsoft.OpenApi.Models;
 using MonoAPI.Configuration;
 using MonoLibrary.Core.Configuration;
+using MonoLibrary.Core.Context;
+using MonoLibrary.Core.Repository;
+using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service;
+using MonoLibrary.Core.Service.Core;
 
 namespace MonoAPI
 {
@@ -12,10 +16,7 @@ namespace MonoAPI
         {
             Configuration = configuration;
         }
-        
         public IConfiguration Configuration { get; }
-
-
         public void ConfigureServices(IServiceCollection services) 
         {
             services.AddControllers();
@@ -34,13 +35,12 @@ namespace MonoAPI
                 });
             });
 
-            services.AddSingleton<FlightService>();
+            RegisterServices(services);
 
             ProjectConfiguration config = new ProjectConfiguration();
             Configuration.Bind("DatabaseConfiguration", config.DBConfig);
             services.AddSingleton(config);
         }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) 
         {
             app.UseCors(builder =>
@@ -67,6 +67,12 @@ namespace MonoAPI
 
             app.UseAuthentication();
             app.UseAuthorization();
+        }
+        private void RegisterServices(IServiceCollection services)
+        {
+            services.AddScoped<IXMLContext, XMLContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IFlightService, FlightService>();
         }
     }
 }
