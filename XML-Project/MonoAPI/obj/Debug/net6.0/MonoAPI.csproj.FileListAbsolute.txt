@@ -50,3 +50,9 @@ D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\r
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.pdb
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.genruntimeconfig.cache
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\ref\MonoAPI.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.csproj.CopyComplete

@@ -1,10 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "VbqDF/LL9zT49Lmh7T5aSzMuKMLgXQ2L3zn9vKfeiJDJfkJgsZ5N50Nsuo4MhzOGhnuEfG7nEnAVxkxmH9zHiQ==",
+  "dgSpecHash": "v015COOMiaDXoSF0jQPT5on7lfhV6+CvPafZ8I8ckcp6G9nix1P+mo77/UMUlWxENUHBJ/3DiLgjx//E/Ddy7g==",
   "success": true,
   "projectFilePath": "D:\\FTN\\IV Godina\\XML-Project\\backend-mono\\XML-Project\\MonoAPI\\MonoAPI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Andrija\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512"
+    "C:\\Users\\Andrija\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Andrija\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Andrija\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512",
+    "C:\\Users\\Andrija\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Andrija\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Andrija\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Andrija\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
   ],
   "logs": []
 }
