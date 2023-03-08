@@ -1,4 +1,7 @@
-﻿using MonoLibrary.Core.Repository.Core;
+﻿using MongoDB.Driver;
+using MonoLibrary.Core.Context;
+using MonoLibrary.Core.Model;
+using MonoLibrary.Core.Repository.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +12,40 @@ namespace MonoLibrary.Core.Repository
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        //Odraditi kad se ubaci Context
-        public TEntity Get(int id)
+        protected readonly IXMLContext _context;
+        protected IMongoCollection<TEntity> _dbSet;
+
+        public BaseRepository(IXMLContext context)
         {
-            throw new NotImplementedException();
-        }
-        public IEnumerable<TEntity> GetAll()
-        {
-            throw new NotImplementedException();
+            _context = context;
+            _dbSet = _context.GetCollection<TEntity>(typeof(TEntity).Name);
         }
 
-        public void Delete(TEntity entity)
+        public virtual async Task<TEntity> Get(int id)
         {
-            throw new NotImplementedException();
+            var data = await _dbSet.FindAsync(Builders<TEntity>.Filter.Eq("_id", id));
+            return data.SingleOrDefault();
         }
+        public virtual async Task<IEnumerable<TEntity>> GetAll()
+        {
+            var data = await _dbSet.FindAsync(Builders<TEntity>.Filter.Empty);
+            return data.ToList();
+        }
+
+        public virtual void Update(TEntity entity) 
+        {
+            //moze i preko interfaca za IEntity
+            _context.AddCommand(() => _dbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", (entity as Entity).Id), entity));
+        }
+
+        public void Dispose() 
+        {
+            _context?.Dispose();
+        }
+
+        //public void Delete(TEntity entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

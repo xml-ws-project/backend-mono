@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MonoLibrary.Core.Repository.Core
+namespace MonoLibrary.Core.Service.Core
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IFlightService
     {
-        Task<bool> Commit();
     }
 }

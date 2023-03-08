@@ -10,5 +10,6 @@ namespace MonoLibrary.Core.Service.Core
     {
         TEntity Get(int id);
         IEnumerable<TEntity> GetAll();
+
     }
 }

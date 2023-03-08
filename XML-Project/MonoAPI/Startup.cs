@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
+using MonoAPI.Configuration;
+using MonoLibrary.Core.Configuration;
+using MonoLibrary.Core.Service;
 
 namespace MonoAPI
 {
@@ -30,6 +33,12 @@ namespace MonoAPI
                     }
                 });
             });
+
+            services.AddSingleton<FlightService>();
+
+            ProjectConfiguration config = new ProjectConfiguration();
+            Configuration.Bind("DatabaseConfiguration", config.DBConfig);
+            services.AddSingleton(config);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) 

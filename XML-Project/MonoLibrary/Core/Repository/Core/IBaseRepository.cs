@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace MonoLibrary.Core.Repository.Core
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IBaseRepository<TEntity> : IDisposable where TEntity : class
     {
-        TEntity Get(int id);
-        IEnumerable<TEntity> GetAll();
-        void Delete(TEntity entity);
+        Task<TEntity> Get(int id);
+        Task<IEnumerable<TEntity>> GetAll();
+        void Update(TEntity entity);
+
+        //void Delete(TEntity entity);
     }
 }

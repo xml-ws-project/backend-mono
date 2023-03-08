@@ -56,3 +56,16 @@ D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\S
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.MvcApplicationPartsAssemblyInfo.cs
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.csproj.CopyComplete
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\AWSSDK.Core.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\AWSSDK.SecurityToken.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\DnsClient.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MongoDB.Bson.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MongoDB.Driver.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\SharpCompress.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Snappier.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\ZstdSharp.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
