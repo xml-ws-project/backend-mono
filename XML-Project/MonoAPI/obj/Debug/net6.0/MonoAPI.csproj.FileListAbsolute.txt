@@ -54,7 +54,6 @@ D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\M
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.MvcApplicationPartsAssemblyInfo.cs
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.csproj.CopyComplete
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\AWSSDK.Core.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\AWSSDK.SecurityToken.dll
@@ -69,3 +68,6 @@ D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Z
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MonoLibrary.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MonoLibrary.pdb
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.MvcApplicationPartsAssemblyInfo.cs

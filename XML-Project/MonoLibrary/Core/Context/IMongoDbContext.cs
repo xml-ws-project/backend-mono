@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using MonoLibrary.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace MonoLibrary.Core.Context
 {
-    public interface IXMLContext : IDisposable
+    public interface IMongoDbContext : IDisposable
     {
-        IMongoCollection<T> GetCollection<T>(string name);
+        IMongoCollection<TEntity> GetCollection<TEntity>(string name) where TEntity : class;
         Task<int> SaveChanges();
         void AddCommand(Func<Task> func);
     }

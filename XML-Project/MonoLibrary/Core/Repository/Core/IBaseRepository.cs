@@ -8,9 +8,11 @@ namespace MonoLibrary.Core.Repository.Core
 {
     public interface IBaseRepository<TEntity> : IDisposable where TEntity : class
     {
+        Task Add (TEntity entity);
         Task<TEntity> Get(int id);
         Task<IEnumerable<TEntity>> GetAll();
-        void Update(TEntity entity);
+        Task Update(TEntity entity);
+        Task Remove(int id);
 
         //void Delete(TEntity entity);
     }

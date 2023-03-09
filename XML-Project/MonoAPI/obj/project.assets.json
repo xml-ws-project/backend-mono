@@ -1066,6 +1066,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.0",
+      "MongoDB.Bson >= 2.19.0",
       "MongoDB.Driver >= 2.19.0",
       "MonoLibrary >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
@@ -1117,6 +1118,10 @@
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
             "target": "Package",
             "version": "[1.17.0, )"
+          },
+          "MongoDB.Bson": {
+            "target": "Package",
+            "version": "[2.19.0, )"
           },
           "MongoDB.Driver": {
             "target": "Package",

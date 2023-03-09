@@ -8,8 +8,9 @@ namespace MonoLibrary.Core.Service.Core
 {
     public interface IBaseService<TEntity> where TEntity : class
     {
-        TEntity Get(int id);
-        IEnumerable<TEntity> GetAll();
+        Task Add(TEntity entity);
+        Task<TEntity> Get(int id);
+        Task<IEnumerable<TEntity>> GetAll();
 
     }
 }

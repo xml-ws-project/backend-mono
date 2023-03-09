@@ -3,3 +3,10 @@ D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\MonoLibrary.AssemblyInfoInputs.cache
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\MonoLibrary.AssemblyInfo.cs
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\MonoLibrary.csproj.CoreCompileInputs.cache
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\bin\Debug\net6.0\MonoLibrary.deps.json
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\bin\Debug\net6.0\MonoLibrary.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\bin\Debug\net6.0\MonoLibrary.pdb
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\MonoLibrary.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\refint\MonoLibrary.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\MonoLibrary.pdb
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\ref\MonoLibrary.dll

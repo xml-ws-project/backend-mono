@@ -12,15 +12,19 @@ namespace MonoLibrary.Core.Repository
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        protected readonly IXMLContext _context;
-        protected IMongoCollection<TEntity> _dbSet;
+        protected readonly IMongoDbContext _context;
+        protected IMongoCollection<TEntity> _dbSet { get; private set; }
 
-        public BaseRepository(IXMLContext context)
+        public BaseRepository(IMongoDbContext context)
         {
             _context = context;
             _dbSet = _context.GetCollection<TEntity>(typeof(TEntity).Name);
         }
 
+        public virtual async Task Add(TEntity entity)
+        {
+            _context.AddCommand(() => _dbSet.InsertOneAsync(entity));
+        }
         public virtual async Task<TEntity> Get(int id)
         {
             var data = await _dbSet.FindAsync(Builders<TEntity>.Filter.Eq("_id", id));
@@ -32,20 +36,20 @@ namespace MonoLibrary.Core.Repository
             return data.ToList();
         }
 
-        public virtual void Update(TEntity entity) 
+        public virtual async Task Update(TEntity entity) 
         {
             //moze i preko interfaca za IEntity
-            _context.AddCommand(() => _dbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", (entity as Entity).Id), entity));
+            _context.AddCommand(() => _dbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", (entity as Entity)?.Id), entity));
         }
 
+        public Task Remove(int id)
+        {
+            throw new NotImplementedException();
+        }
         public void Dispose() 
         {
             _context?.Dispose();
+            GC.SuppressFinalize(this);
         }
-
-        //public void Delete(TEntity entity)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

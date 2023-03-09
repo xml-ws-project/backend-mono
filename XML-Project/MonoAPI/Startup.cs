@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using MonoAPI.Configuration;
-using MonoLibrary.Core.Configuration;
 using MonoLibrary.Core.Context;
+using MonoLibrary.Core.DbSettings;
 using MonoLibrary.Core.Repository;
 using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service;
@@ -35,11 +35,15 @@ namespace MonoAPI
                 });
             });
 
+            //Binding appsettings.json and DbSettings.cs
+            services.Configure<DbSettings>(Configuration.GetSection("DbSettings"));
+            services.AddSingleton<IDbSettings>(provider => 
+                provider.GetRequiredService<IOptions<DbSettings>>().Value);
+
+            //Register your services in this function
             RegisterServices(services);
 
-            ProjectConfiguration config = new ProjectConfiguration();
-            Configuration.Bind("DatabaseConfiguration", config.DBConfig);
-            services.AddSingleton(config);
+            services.AddControllers();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) 
         {
@@ -67,12 +71,18 @@ namespace MonoAPI
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
         private void RegisterServices(IServiceCollection services)
         {
-            services.AddScoped<IXMLContext, XMLContext>();
+            services.AddScoped<IMongoDbContext, MongoDbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IFlightService, FlightService>();
+            services.AddScoped<IFlightRepository, FlightRepository>();
         }
     }
 }

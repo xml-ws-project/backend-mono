@@ -1,4 +1,5 @@
-﻿using MonoLibrary.Core.Model;
+﻿using MonoLibrary.Core.Context;
+using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Repository.Core;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,10 @@ namespace MonoLibrary.Core.Repository
 {
     public class FlightRepository : BaseRepository<Flight>, IFlightRepository
     {
+        private readonly IMongoDbContext _context;
+        public FlightRepository(IMongoDbContext context) : base(context)
+        {
+            _context = context;
+        }
     }
 }

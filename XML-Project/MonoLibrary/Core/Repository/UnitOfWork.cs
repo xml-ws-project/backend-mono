@@ -10,8 +10,8 @@ namespace MonoLibrary.Core.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IXMLContext _context;
-        public UnitOfWork(IXMLContext context)
+        private readonly IMongoDbContext _context;
+        public UnitOfWork(IMongoDbContext context)
         {
             _context = context;
         }

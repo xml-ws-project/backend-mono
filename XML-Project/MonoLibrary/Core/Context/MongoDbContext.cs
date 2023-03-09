@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
-using MonoLibrary.Core.Configuration;
+using MonoLibrary.Core.DbSettings;
+using MonoLibrary.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace MonoLibrary.Core.Context
 {
-    public class XMLContext : IXMLContext
+    public class MongoDbContext : IMongoDbContext
     {
         private IMongoDatabase Database { get; set; }
         public IClientSessionHandle Session { get; set; }
         public MongoClient Client { get; set; }
 
         private readonly List<Func<Task>> _commands;
-        private readonly ProjectConfiguration _configuration;
+        private readonly IDbSettings _configuration;
 
-        public XMLContext(ProjectConfiguration configuration)
+        public MongoDbContext(IDbSettings configuration)
         {
             _configuration = configuration;
             _commands = new List<Func<Task>>();     
@@ -45,13 +46,13 @@ namespace MonoLibrary.Core.Context
                 return;
             }
 
-            Client = new MongoClient(_configuration.DBConfig.ConnectionString);
-            Database = Client.GetDatabase(_configuration.DBConfig.DataBaseName);
+            Client = new MongoClient(_configuration.ConnectionString);
+            Database = Client.GetDatabase(_configuration.DatabaseName);
         }
-        public IMongoCollection<T> GetCollection<T>(string name) 
+        public IMongoCollection<TEntity> GetCollection<TEntity>(string name) where TEntity : class
         {
             ConfigureMongo();
-            return Database.GetCollection<T>(name);
+            return Database.GetCollection<TEntity>(name);
         }
         public void AddCommand(Func<Task> func) 
         {
