@@ -40,7 +40,7 @@ namespace MonoAPI
             services.AddSingleton<IDbSettings>(provider => 
                 provider.GetRequiredService<IOptions<DbSettings>>().Value);
 
-            //Register your services in this function
+            //Register your services and repositories in this function
             RegisterServices(services);
 
             services.AddControllers();

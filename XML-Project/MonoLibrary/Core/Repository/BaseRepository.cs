@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using MonoLibrary.Core.Context;
 using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Repository.Core;
@@ -20,31 +21,31 @@ namespace MonoLibrary.Core.Repository
             _context = context;
             _dbSet = _context.GetCollection<TEntity>(typeof(TEntity).Name);
         }
-
-        public virtual async Task Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
+            (entity as Entity).Created = DateTime.Now;
+            (entity as Entity).Updated = DateTime.Now;
             _context.AddCommand(() => _dbSet.InsertOneAsync(entity));
         }
-        public virtual async Task<TEntity> Get(int id)
+        public virtual TEntity Get(string id)
         {
-            var data = await _dbSet.FindAsync(Builders<TEntity>.Filter.Eq("_id", id));
+            //Treba i ovde uracunati ove sto imaju Deleted = true
+            var data = _dbSet.Find(Builders<TEntity>.Filter.Eq("_id", ObjectId.Parse(id)));
             return data.SingleOrDefault();
         }
-        public virtual async Task<IEnumerable<TEntity>> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
-            var data = await _dbSet.FindAsync(Builders<TEntity>.Filter.Empty);
+            var data = _dbSet.Find(Builders<TEntity>.Filter.Eq("deleted", false));
             return data.ToList();
         }
-
-        public virtual async Task Update(TEntity entity) 
+        public virtual void Update(TEntity entity) 
         {
-            //moze i preko interfaca za IEntity
-            _context.AddCommand(() => _dbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", (entity as Entity)?.Id), entity));
+            (entity as Entity).Updated = DateTime.Now;
+            _context.AddCommand(() => _dbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", ObjectId.Parse((entity as Entity)?.Id)), entity));
         }
-
-        public Task Remove(int id)
+        public void Remove(string id)
         {
-            throw new NotImplementedException();
+            _context.AddCommand(() => _dbSet.DeleteOneAsync(Builders<TEntity>.Filter.Eq("_id", ObjectId.Parse(id))));
         }
         public void Dispose() 
         {

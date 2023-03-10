@@ -10,31 +10,54 @@ namespace MonoAPI.Controllers
     [ApiController]
     public class FlightController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
         private IFlightService _flightService;
-
-        public FlightController(IUnitOfWork unitOfWork, IFlightService flightService)
+        public FlightController(IFlightService flightService)
         {
-            _unitOfWork = unitOfWork;
             _flightService = flightService;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Flight>> Get(int id)
+        [HttpPost]
+        public async Task<IActionResult> AddAsync([FromBody] NewFlightDTO dto)
         {
-            var flight = await _flightService.Get(id);
+            //ovo se treba izmeniti(mozda neki maper)
+            var newFlight = new Flight(dto.Name, dto.Price);
+            var result = await _flightService.Add(newFlight);
+
+            if (!result)
+                return BadRequest("Something went wrong, try again later");
+
+            return Ok("Flight added.");
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Flight> Get(string id)
+        {
+            var flight = _flightService.Get(id);
             if (flight == null)
-                return NotFound("There was no flight found with provided id.");
+                return NotFound("There is no flight with provided id.");
 
             return Ok(flight);
         }
 
-        [HttpPost]
-        public async Task Add([FromBody] NewFlightDTO dto) 
+        [HttpGet]
+        public ActionResult<IEnumerable<Flight>> GetAll() 
         {
-            var newFlight = new Flight(dto.Name, dto.Price);
-            await _flightService.Add(newFlight);
-            return;
+            var flights = _flightService.GetAll();
+            if (flights == null)
+                return NotFound("There are no flights found in the system.");
+
+            return Ok(flights);
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveAsync(string id) 
+        {
+            var result = await _flightService.Remove(id);
+            if (!result)
+                return BadRequest("Something went wrong, try again later.");
+
+            return Ok("Flight removed.");
         }
     }
 }

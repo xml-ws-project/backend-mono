@@ -9,7 +9,9 @@ namespace MonoLibrary.Core.Service.Core
 {
     public interface IFlightService
     {
-        Task Add(Flight flight);
-        Task<Flight> Get(int id);
+        Task<bool> Add(Flight flight);
+        Flight Get(string id);
+        IEnumerable<Flight> GetAll();
+        Task<bool> Remove(string id); 
     }
 }

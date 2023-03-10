@@ -1,4 +1,5 @@
-﻿using MonoLibrary.Core.Repository.Core;
+﻿using MonoLibrary.Core.Model;
+using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service.Core;
 using System;
 using System.Collections.Generic;
@@ -18,29 +19,74 @@ namespace MonoLibrary.Core.Service
             _unitOfWork = unitOfWork;
             _baseRepository = baseRepository;
         }
-
-        public virtual async Task Add(TEntity entity)
-        {
-            await _baseRepository.Add(entity);
-            await _unitOfWork.Commit();
-        }
-
-        public virtual async Task<TEntity> Get(int id)
+        public virtual async Task<bool> Add(TEntity entity)
         {
             try
             {
-                var entity = await _baseRepository.Get(id);
+                _baseRepository.Add(entity);
+                await _unitOfWork.Commit();
+                return true;  
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public virtual TEntity Get(string id)
+        {
+            try
+            {
+                var entity = _baseRepository.Get(id);
                 return entity;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
         }
-
-        public virtual Task<IEnumerable<TEntity>> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entities = _baseRepository.GetAll();
+                return entities;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
+        public virtual async Task<bool> Update(TEntity entity) 
+        {
+            try
+            {
+                _baseRepository.Update(entity);
+                await _unitOfWork.Commit();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> Remove(string id) 
+        {
+            try
+            {
+                var entity = Get(id);
+                (entity as Entity).Deleted = true;
+                Update(entity);
+                await _unitOfWork.Commit(); 
+                return true;
+
+                //_baseRepository.Remove(id);
+                //await _unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        
     }
 }
