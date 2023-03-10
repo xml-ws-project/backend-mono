@@ -21,27 +21,28 @@ namespace MonoLibrary.Core.Repository
             _context = context;
             _dbSet = _context.GetCollection<TEntity>(typeof(TEntity).Name);
         }
-        public virtual void Add(TEntity entity)
+        public virtual TEntity Add(TEntity entity)
         {
             (entity as Entity).Created = DateTime.Now;
             (entity as Entity).Updated = DateTime.Now;
             _context.AddCommand(() => _dbSet.InsertOneAsync(entity));
+            return entity;
         }
         public virtual TEntity Get(string id)
         {
-            //Treba i ovde uracunati ove sto imaju Deleted = true
             var data = _dbSet.Find(Builders<TEntity>.Filter.Eq("_id", ObjectId.Parse(id)));
             return data.SingleOrDefault();
         }
         public virtual IEnumerable<TEntity> GetAll()
         {
-            var data = _dbSet.Find(Builders<TEntity>.Filter.Eq("deleted", false));
-            return data.ToList();
+            //var data = _dbSet.Find(Builders<TEntity>.Filter.Eq("deleted", false));
+            return _dbSet.Find(x => true).ToList();
         }
-        public virtual void Update(TEntity entity) 
+        public virtual TEntity Update(TEntity entity) 
         {
             (entity as Entity).Updated = DateTime.Now;
             _context.AddCommand(() => _dbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", ObjectId.Parse((entity as Entity)?.Id)), entity));
+            return entity;
         }
         public void Remove(string id)
         {
@@ -56,6 +57,10 @@ namespace MonoLibrary.Core.Repository
         {
             _context?.Dispose();
             GC.SuppressFinalize(this);
+        }
+        public IMongoCollection<TEntity> GetCollection()
+        {
+            return _dbSet;
         }
     }
 }

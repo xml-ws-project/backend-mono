@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MonoAPI.DTOs.Flights;
+using MonoAPI.Mappers;
+using MonoLibrary.Core.DTOs;
 using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service.Core;
@@ -20,7 +22,7 @@ namespace MonoAPI.Controllers
         public async Task<IActionResult> AddAsync([FromBody] NewFlightDTO dto)
         {
             //ovo se treba izmeniti(mozda neki maper)
-            var newFlight = new Flight(dto.Name, dto.Price);
+            var newFlight = FlightMapper.NewDTOToEntity(dto);
             var result = await _flightService.Add(newFlight);
 
             if (!result)
@@ -58,6 +60,15 @@ namespace MonoAPI.Controllers
                 return BadRequest("Something went wrong, try again later.");
 
             return Ok("Flight removed.");
+        }
+
+        [HttpPost("search")]
+        public ActionResult SearchFlights(SearchFlightDTO dto)
+        {
+            if (dto == null)
+                return BadRequest();
+
+            return Ok(FlightMapper.EntityListToEntityDTOList(_flightService.SearchFlights(dto).ToList()));
         }
     }
 }

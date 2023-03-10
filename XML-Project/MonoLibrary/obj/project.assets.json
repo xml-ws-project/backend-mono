@@ -752,19 +752,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andrija\\.nuget\\packages\\": {}
+    "C:\\Users\\One\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FTN\\IV Godina\\XML-Project\\backend-mono\\XML-Project\\MonoLibrary\\MonoLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\One\\Desktop\\F\\4.godina\\2. semestar\\XML i web servisi\\Projekat\\backend-mono\\XML-Project\\MonoLibrary\\MonoLibrary.csproj",
       "projectName": "MonoLibrary",
-      "projectPath": "D:\\FTN\\IV Godina\\XML-Project\\backend-mono\\XML-Project\\MonoLibrary\\MonoLibrary.csproj",
-      "packagesPath": "C:\\Users\\Andrija\\.nuget\\packages\\",
-      "outputPath": "D:\\FTN\\IV Godina\\XML-Project\\backend-mono\\XML-Project\\MonoLibrary\\obj\\",
+      "projectPath": "C:\\Users\\One\\Desktop\\F\\4.godina\\2. semestar\\XML i web servisi\\Projekat\\backend-mono\\XML-Project\\MonoLibrary\\MonoLibrary.csproj",
+      "packagesPath": "C:\\Users\\One\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\One\\Desktop\\F\\4.godina\\2. semestar\\XML i web servisi\\Projekat\\backend-mono\\XML-Project\\MonoLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Andrija\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\One\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -815,7 +815,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.406\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
