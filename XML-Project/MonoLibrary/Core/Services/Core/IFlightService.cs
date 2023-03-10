@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MonoLibrary.Core.Service.Core
 {
-    public interface IFlightService
+    public interface IFlightService 
     {
         Task<bool> Add(Flight flight);
         Flight Get(string id);

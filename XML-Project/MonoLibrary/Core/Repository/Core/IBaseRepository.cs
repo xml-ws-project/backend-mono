@@ -12,6 +12,7 @@ namespace MonoLibrary.Core.Repository.Core
         TEntity Get(string id);
         IEnumerable<TEntity> GetAll();
         void Update(TEntity entity);
-        void Remove(string id);        
+        void Remove(string id);
+        Task<bool> Commit();
     }
 }

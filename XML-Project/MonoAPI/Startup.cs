@@ -80,7 +80,6 @@ namespace MonoAPI
         private void RegisterServices(IServiceCollection services)
         {
             services.AddScoped<IMongoDbContext, MongoDbContext>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IFlightService, FlightService>();
             services.AddScoped<IFlightRepository, FlightRepository>();
         }

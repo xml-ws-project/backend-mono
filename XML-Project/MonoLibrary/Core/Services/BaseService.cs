@@ -12,11 +12,9 @@ namespace MonoLibrary.Core.Service
     public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
     {
 
-        protected readonly IUnitOfWork _unitOfWork;
         protected IBaseRepository<TEntity> _baseRepository;
-        public BaseService(IUnitOfWork unitOfWork, IBaseRepository<TEntity> baseRepository)
+        public BaseService(IBaseRepository<TEntity> baseRepository)
         {
-            _unitOfWork = unitOfWork;
             _baseRepository = baseRepository;
         }
         public virtual async Task<bool> Add(TEntity entity)
@@ -24,7 +22,7 @@ namespace MonoLibrary.Core.Service
             try
             {
                 _baseRepository.Add(entity);
-                await _unitOfWork.Commit();
+                await _baseRepository.Commit();
                 return true;  
             }
             catch (Exception)
@@ -61,7 +59,7 @@ namespace MonoLibrary.Core.Service
             try
             {
                 _baseRepository.Update(entity);
-                await _unitOfWork.Commit();
+                await _baseRepository.Commit();
                 return true;
             }
             catch (Exception)
@@ -76,7 +74,7 @@ namespace MonoLibrary.Core.Service
                 var entity = Get(id);
                 (entity as Entity).Deleted = true;
                 Update(entity);
-                await _unitOfWork.Commit(); 
+                await _baseRepository.Commit();
                 return true;
 
                 //_baseRepository.Remove(id);
@@ -87,6 +85,9 @@ namespace MonoLibrary.Core.Service
                 return false;
             }
         }
-        
+        public async Task<bool> Commit()
+        {
+            return await _baseRepository.Commit();
+        }
     }
 }

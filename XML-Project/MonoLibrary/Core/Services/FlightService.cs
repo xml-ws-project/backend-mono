@@ -15,10 +15,8 @@ namespace MonoLibrary.Core.Service
     public class FlightService : BaseService<Flight>, IFlightService
     {
         private readonly IFlightRepository _flightRepository;
-        private readonly IUnitOfWork _unitOfWork;
-        public FlightService(IUnitOfWork unitOfWork, IFlightRepository flightRepository) : base(unitOfWork, flightRepository)
+        public FlightService(IFlightRepository flightRepository) : base(flightRepository)
         {
-            _unitOfWork = unitOfWork;
             _flightRepository = flightRepository;
         }
     }

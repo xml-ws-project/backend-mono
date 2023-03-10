@@ -47,6 +47,11 @@ namespace MonoLibrary.Core.Repository
         {
             _context.AddCommand(() => _dbSet.DeleteOneAsync(Builders<TEntity>.Filter.Eq("_id", ObjectId.Parse(id))));
         }
+        public async Task<bool> Commit()
+        {
+            var changesMade = await _context.SaveChanges();
+            return changesMade > 0;
+        }
         public void Dispose() 
         {
             _context?.Dispose();

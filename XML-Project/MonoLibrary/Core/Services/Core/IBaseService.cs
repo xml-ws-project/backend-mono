@@ -13,6 +13,6 @@ namespace MonoLibrary.Core.Service.Core
         IEnumerable<TEntity> GetAll();
         Task<bool> Update(TEntity entity);
         Task<bool> Remove(string id);
-
+        Task<bool> Commit();
     }
 }
