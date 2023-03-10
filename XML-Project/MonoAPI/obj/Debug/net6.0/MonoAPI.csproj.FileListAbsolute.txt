@@ -71,3 +71,5 @@ D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\r
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MonoLibrary.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MonoLibrary.pdb
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\AspNetCore.Identity.MongoDbCore.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MongoDbGenericRepository.dll

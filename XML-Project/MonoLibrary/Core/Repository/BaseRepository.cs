@@ -29,8 +29,7 @@ namespace MonoLibrary.Core.Repository
         }
         public virtual TEntity Get(string id)
         {
-            //Treba i ovde uracunati ove sto imaju Deleted = true
-            var data = _dbSet.Find(Builders<TEntity>.Filter.Eq("_id", ObjectId.Parse(id)));
+            var data = GetAll().Where(c => (c as Entity).Id.Equals(ObjectId.Parse(id)));
             return data.SingleOrDefault();
         }
         public virtual IEnumerable<TEntity> GetAll()

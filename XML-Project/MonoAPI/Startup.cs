@@ -3,10 +3,12 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MonoLibrary.Core.Context;
 using MonoLibrary.Core.DbSettings;
+using MonoLibrary.Core.Models.ApplicationUsers;
 using MonoLibrary.Core.Repository;
 using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service;
 using MonoLibrary.Core.Service.Core;
+
 
 namespace MonoAPI
 {
@@ -39,6 +41,13 @@ namespace MonoAPI
             services.Configure<DbSettings>(Configuration.GetSection("DbSettings"));
             services.AddSingleton<IDbSettings>(provider => 
                 provider.GetRequiredService<IOptions<DbSettings>>().Value);
+
+            //Identity setup
+            var dbSettings = Configuration.GetSection("DbSettings").Get<DbSettings>();
+            services.AddIdentity<User, Role>().AddMongoDbStores<User, Role, string>
+                (
+                    dbSettings.ConnectionString , dbSettings.DatabaseName
+                );
 
             //Register your services and repositories in this function
             RegisterServices(services);
