@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using MonoLibrary.Core.DbSettings;
 using MonoLibrary.Core.DTOs;
 using MonoLibrary.Core.Model;
@@ -7,6 +8,7 @@ using MonoLibrary.Core.Service.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,34 +25,29 @@ namespace MonoLibrary.Core.Service
 
         public IEnumerable<Flight> SearchFlights(SearchFlightDTO dto)
         {
-            List<Flight> flights = new List<Flight>();
-            if (!dto.DeparturePlace.Equals(null))
+            var flights = GetAll();
+            if (!string.IsNullOrWhiteSpace(dto.DeparturePlace))
             {
-                var tempFlights = _flightRepository.GetCollection().Find(x => x.DeparturePlace.ToLower().Contains(dto.DeparturePlace.ToLower())).ToList();
-                flights.AddRange(tempFlights);
+                flights = flights.Where(x => x.DeparturePlace.ToLower().Contains(dto.DeparturePlace.ToLower()));
             }
-            if (!dto.LandingPlace.Equals(null))
+            if (!string.IsNullOrWhiteSpace(dto.LandingPlace))
             {
-                var tempFlights = _flightRepository.GetCollection().Find(x => x.LandingPlace.ToLower().Contains(dto.LandingPlace.ToLower())).ToList();
-                flights.AddRange(tempFlights);
+                flights = flights.Where(x => x.LandingPlace.ToLower().Contains(dto.LandingPlace.ToLower()));
             }
-            if(dto.RemainingSeats != 0)
+            if (dto.RemainingSeats != 0)
             {
-                var tempFlights = _flightRepository.GetCollection().Find(x => x.RemainingSeats >= dto.RemainingSeats).ToList();
-                flights.AddRange(tempFlights);
+                flights = flights.Where(x => x.RemainingSeats >= dto.RemainingSeats);
             }
-            if (!dto.TakeOffDateTime.Equals(null))
+            if (!dto.TakeOffDate.Equals(null) && !dto.TakeOffDate.Equals(default(DateTime)))
             {
-                var tempFlights = _flightRepository.GetCollection().Find(x => x.TakeOffDateTime.Equals(dto.TakeOffDateTime)).ToList();
-                flights.AddRange(tempFlights);
+                flights = flights.Where(x => x.TakeOffDateTime.Date.Equals(dto.TakeOffDate.Date));
             }
-            if (!dto.LandingDateTime.Equals(null))
+            if (!dto.LandingDate.Equals(null) && !dto.LandingDate.Equals(default(DateTime)))
             {
-                var tempFlights = _flightRepository.GetCollection().Find(x => x.LandingDateTime.Equals(dto.LandingDateTime)).ToList();
-                flights.AddRange(tempFlights);
+                flights = flights.Where(x => x.LandingDateTime.Date.Equals(dto.LandingDate.Date));
             }
 
-            return flights.Distinct();
+            return flights;
         }
     }
 }

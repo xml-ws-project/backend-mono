@@ -22,3 +22,5 @@ C:\Users\One\Desktop\F\4.godina\2. semestar\XML i web servisi\Projekat\backend-m
 C:\Users\One\Desktop\F\4.godina\2. semestar\XML i web servisi\Projekat\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\refint\MonoLibrary.dll
 C:\Users\One\Desktop\F\4.godina\2. semestar\XML i web servisi\Projekat\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\MonoLibrary.pdb
 C:\Users\One\Desktop\F\4.godina\2. semestar\XML i web servisi\Projekat\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\ref\MonoLibrary.dll
+C:\Users\One\Desktop\F\4.godina\2. semestar\XML i web servisi\Projekat\backend-mono\XML-Project\MonoLibrary\bin\Debug\net6.0\MonoLibrary.runtimeconfig.json
+C:\Users\One\Desktop\F\4.godina\2. semestar\XML i web servisi\Projekat\backend-mono\XML-Project\MonoLibrary\obj\Debug\net6.0\MonoLibrary.genruntimeconfig.cache
