@@ -11,6 +11,10 @@ namespace MonoLibrary.Core.Models.ApplicationUsers
     [CollectionName("roles")]
     public class Role : MongoIdentityRole<string>
     {
-        
+        public Role() { }
+        public Role(string name)
+        {
+            Name = name;
+        }
     }
 }
