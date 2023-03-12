@@ -13,7 +13,7 @@ namespace MonoAPI.Mappers
 
         public static Flight NewDTOToEntity(NewFlightDTO dto)
         {
-            return new Flight(dto.DeparturePlace, dto.LandingPlace, "", 0, dto.TakeOffDateTime, dto.LandingDateTime, dto.RemainingSeats);
+            return new Flight(dto.DeparturePlace, dto.LandingPlace, "", dto.Price, dto.TakeOffDateTime, dto.LandingDateTime, dto.RemainingSeats);
         }
 
         public static List<FlightDTO> EntityListToEntityDTOList(List<Flight> flights)
