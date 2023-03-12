@@ -22,7 +22,5 @@ namespace MonoLibrary.Core.Models
         [JsonPropertyName("seat_number")]
         public int SeatNumber { get; set; }
 
-
-
     }
 }
