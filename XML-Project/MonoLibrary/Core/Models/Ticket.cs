@@ -18,9 +18,24 @@ namespace MonoLibrary.Core.Models
 
         }
 
+        public Ticket(int seatNumber, string userId, int flightId)
+        {
+            SeatNumber = seatNumber;
+            UserId = userId;
+            FlightId = flightId;
+        }
+
         [BsonElement("seat_number")]
         [JsonPropertyName("seat_number")]
         public int SeatNumber { get; set; }
+
+        [BsonElement("user_id")]
+        [JsonPropertyName("user_id")]
+        public string UserId { get; set; }
+
+        [BsonElement("flight_id")]
+        [JsonPropertyName("flight_id")]
+        public int FlightId { get; set; }
 
     }
 }
