@@ -10,9 +10,9 @@ namespace MonoLibrary.Core.DTOs
     {
         public DateTime TakeOffDate { get; set; }
         public DateTime LandingDate { get; set; }
-        public int RemainingSeats { get; set; }
-        public string DeparturePlace { get; set; }
-        public string LandingPlace { get; set; }
+        public int? RemainingSeats { get; set; }
+        public string? DeparturePlace { get; set; }
+        public string? LandingPlace { get; set; }
 
         public SearchFlightDTO() {}
 

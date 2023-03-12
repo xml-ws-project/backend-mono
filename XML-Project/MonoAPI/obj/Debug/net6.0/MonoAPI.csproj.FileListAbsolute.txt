@@ -141,3 +141,5 @@ C:\Users\One\Desktop\F\4.godina\2. semestar\XML i web servisi\Projekat\backend-m
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\AspNetCore.Identity.MongoDbCore.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MongoDbGenericRepository.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\One\Desktop\F\4.godina\2. semestar\XML i web servisi\Projekat\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\AspNetCore.Identity.MongoDbCore.dll
+C:\Users\One\Desktop\F\4.godina\2. semestar\XML i web servisi\Projekat\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\MongoDbGenericRepository.dll
