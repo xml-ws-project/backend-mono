@@ -2,8 +2,8 @@
 *.d
 
 # Additional
-.bin
-.obj
+bin/
+obj/
 
 # Visual Studio 2022 cache/options directory
 .vs
