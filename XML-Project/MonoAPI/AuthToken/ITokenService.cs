@@ -1,8 +1,10 @@
-﻿namespace MonoAPI.AuthToken
+﻿using MonoLibrary.Core.Models.ApplicationUsers;
+
+namespace MonoAPI.AuthToken
 {
     public interface ITokenService
     {
-        Task<string> GetTokenAsync(string token);
+        Task<string> CreateTokenAsync(string email);
         bool ValidateToken(string token);  
     }
 }

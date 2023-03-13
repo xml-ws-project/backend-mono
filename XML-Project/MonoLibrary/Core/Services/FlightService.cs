@@ -1,21 +1,14 @@
 ﻿using MongoDB.Driver;
-<<<<<<< HEAD
 using MonoLibrary.Core.DbSettings;
-=======
 using MongoDB.Driver.Linq;
-using MonoLibrary.Core.DbSettings;
 using MonoLibrary.Core.DTOs;
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
 using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-<<<<<<< HEAD
-=======
 using System.Data.Entity;
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,9 +22,6 @@ namespace MonoLibrary.Core.Service
         {
             _flightRepository = flightRepository;
         }
-<<<<<<< HEAD
-=======
-
         public IEnumerable<Flight> SearchFlights(SearchFlightDTO dto)
         {
             var flights = GetAll();
@@ -82,6 +72,5 @@ namespace MonoLibrary.Core.Service
 
             return flights;
         }
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
     }
 }

@@ -1,18 +1,11 @@
-<<<<<<< HEAD
 ﻿using MongoDbGenericRepository.Attributes;
-=======
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDbGenericRepository.Attributes;
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
 using MonoLibrary.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-<<<<<<< HEAD
-=======
 using System.Text.Json.Serialization;
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
 using System.Threading.Tasks;
 
 namespace MonoLibrary.Core.Models
@@ -20,14 +13,10 @@ namespace MonoLibrary.Core.Models
     [CollectionName("tickets")]
     public class Ticket : Entity
     {
-<<<<<<< HEAD
-        
-=======
         public Ticket()
         {
 
         }
-
         public Ticket(int seatNumber, string userId, int flightId, double price)
         {
             SeatNumber = seatNumber;
@@ -51,7 +40,5 @@ namespace MonoLibrary.Core.Models
         [BsonElement("price")]
         [JsonPropertyName("price")]
         public double Price { get; set; }
-
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
     }
 }

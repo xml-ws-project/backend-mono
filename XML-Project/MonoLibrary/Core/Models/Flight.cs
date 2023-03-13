@@ -13,34 +13,10 @@ namespace MonoLibrary.Core.Model
     [BsonCollection("flights")]
     public class Flight : Entity
     {
-<<<<<<< HEAD
-        public Flight(string name, double price)
-        {
-            Name = name;
-            Price = price;
-        }
-
-        //[BsonElement("takeoff")]
-        //[JsonPropertyName("takeoff")]
-        //public DateTime TakeoffDate { get; set; }
-
-        //[BsonElement("landing")]
-        //[JsonPropertyName("landing")]
-        //public DateTime LandingDate { get; set; }
-
-        [BsonElement("name")]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [BsonElement("price")]
-        [JsonPropertyName("price")]
-        public double Price { get; set; }
-=======
         public Flight()
         {
             Pricelist = new Dictionary<string, double>();
         }
-
         public Flight(string departurePlace, string landingPlace, Dictionary<string, double> pricelist, DateTime takeoffDateTime, DateTime landingDateTime, int remainingSeats, int capacity)
         {
             DeparturePlace = departurePlace;
@@ -51,7 +27,6 @@ namespace MonoLibrary.Core.Model
             RemainingSeats = remainingSeats;
             Capacity = capacity;
         }
-
         public override bool Equals(object obj)
         {
             var item = obj as Flight;
@@ -63,7 +38,6 @@ namespace MonoLibrary.Core.Model
 
             return this.Id.Equals(item.Id);
         }
-
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();
@@ -96,7 +70,6 @@ namespace MonoLibrary.Core.Model
         [BsonElement("pricelist")]
         [JsonPropertyName("pricelist")]
         public Dictionary<string, double> Pricelist { get; set; }
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
-
+       
     }
 }

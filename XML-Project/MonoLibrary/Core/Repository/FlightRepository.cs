@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 ﻿using MonoLibrary.Core.Context;
-=======
 ﻿using MongoDB.Driver;
-using MonoLibrary.Core.Context;
 using MonoLibrary.Core.DTOs;
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
 using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Repository.Core;
 using System;
@@ -22,9 +18,5 @@ namespace MonoLibrary.Core.Repository
         {
             _context = context;
         }
-<<<<<<< HEAD
-=======
-        
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
     }
 }

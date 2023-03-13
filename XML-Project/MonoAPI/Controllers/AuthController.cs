@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MonoAPI.AuthToken;
 using MonoAPI.DTOs.Auth;
 using MonoAPI.DTOs.Users;
 using MonoLibrary.Core.Models;
@@ -13,9 +14,11 @@ namespace MonoAPI.Controllers
     public class AuthController : ControllerBase
     {
         private IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private ITokenService _tokenService;
+        public AuthController(IAuthService authService, ITokenService tokenService)
         {
             _authService = authService;
+            _tokenService = tokenService;   
         }
 
         [HttpPost("create")]
@@ -85,7 +88,8 @@ namespace MonoAPI.Controllers
                 var result = await _authService.Login(dto.Email, dto.Password, dto.RememberMe);
                 if (result.Succeeded)
                 {
-                    return Ok(result);
+                    var token = await _tokenService.CreateTokenAsync(dto.Email);
+                    return Ok(token);
                 }
                 else if(result.IsNotAllowed)
                 {

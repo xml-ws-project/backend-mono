@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 ﻿using MonoLibrary.Core.Model;
-=======
 ﻿using MongoDB.Driver;
-using MonoLibrary.Core.Model;
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
 using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service.Core;
 using System;
@@ -18,10 +14,6 @@ namespace MonoLibrary.Core.Service
     {
 
         protected IBaseRepository<TEntity> _baseRepository;
-<<<<<<< HEAD
-=======
-
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
         public BaseService(IBaseRepository<TEntity> baseRepository)
         {
             _baseRepository = baseRepository;

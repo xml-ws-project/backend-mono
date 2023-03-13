@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MonoAPI.DTOs.Flights;
-<<<<<<< HEAD
-=======
 using MonoAPI.Mappers;
 using MonoLibrary.Core.DTOs;
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
 using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service.Core;
@@ -24,12 +21,7 @@ namespace MonoAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] NewFlightDTO dto)
         {
-            //ovo se treba izmeniti(mozda neki maper)
-<<<<<<< HEAD
-            var newFlight = new Flight(dto.Name, dto.Price);
-=======
             var newFlight = FlightMapper.NewDTOToEntity(dto);
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
             var result = await _flightService.Add(newFlight);
 
             if (!result)
@@ -58,7 +50,6 @@ namespace MonoAPI.Controllers
             return Ok(flights);
         }
 
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveAsync(string id) 
         {
@@ -68,8 +59,6 @@ namespace MonoAPI.Controllers
 
             return Ok("Flight removed.");
         }
-<<<<<<< HEAD
-=======
 
         [HttpPost("search")]
         public ActionResult SearchFlights(SearchFlightDTO dto)
@@ -79,6 +68,5 @@ namespace MonoAPI.Controllers
 
             return Ok(FlightMapper.EntityListToEntityDTOList(_flightService.SearchFlights(dto).ToList()));
         }
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
     }
 }
