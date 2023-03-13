@@ -1,32 +1,31 @@
 ﻿namespace MonoAPI.DTOs.Flights
 {
-    public class NewFlightDTO
+    public class FlightDTO
     {
-<<<<<<< HEAD
-        public string Name { get; set; }
-        public double Price { get; set; }
-=======
+        public string Id { get; set; }
         public string DeparturePlace { get; set; }
         public string LandingPlace { get; set; }
         public DateTime TakeOffDateTime { get; set; }
         public DateTime LandingDateTime { get; set; }
+        public int RemainingSeats { get; set; }
         public int Capacity { get; set; }
         public Dictionary<string, double> Pricelist { get; set; }
 
-        public NewFlightDTO()
+        public FlightDTO()
         {
             Pricelist = new Dictionary<string, double>();
         }
 
-        public NewFlightDTO(string departurePlace, string landingPlace, Dictionary<string, double> pricelist, DateTime takeOffDateTime, DateTime landingDateTime, int capacity)
+        public FlightDTO(string id, string departurePlace, string landingPlace, Dictionary<string, double> pricelist, DateTime takeOffDateTime, DateTime landingDateTime, int remainingSeats, int capacity)
         {
+            Id = id;
             DeparturePlace = departurePlace;
             LandingPlace = landingPlace;
-            Pricelist= pricelist;
+            Pricelist = pricelist;
             TakeOffDateTime = takeOffDateTime;
             LandingDateTime = landingDateTime;
+            RemainingSeats = remainingSeats;
             Capacity = capacity;
         }
->>>>>>> 2ea1682615bfec94e4e76dff9800b34eabf039b5
     }
 }
