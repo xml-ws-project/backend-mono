@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using MonoAPI.Configuration;
 using MonoLibrary.Core.Context;
 using MonoLibrary.Core.DbSettings;
 using MonoLibrary.Core.Models.ApplicationUsers;
@@ -41,16 +42,19 @@ namespace MonoAPI
                 });
             });
 
-            //Binding appsettings.json and DbSettings.cs
+            //Binding appsettings.json and DbSettings
             services.Configure<DbSettings>(Configuration.GetSection("DbSettings"));
             services.AddSingleton<IDbSettings>(provider => 
                 provider.GetRequiredService<IOptions<DbSettings>>().Value);
+
+            //Binding appsettings.json and ProjectConfiguration
+            services.Configure<ProjectConfiguration>(Configuration.GetSection)
 
             //Identity setup
             var dbSettings = Configuration.GetSection("DbSettings").Get<DbSettings>();
             services.AddIdentity<User, Role>().AddMongoDbStores<User, Role, string>
                 (
-                    dbSettings.ConnectionString , dbSettings.DatabaseName 
+                    dbSettings.ConnectionString, dbSettings.DatabaseName
                 );
 
             //Register your services and repositories in this function
