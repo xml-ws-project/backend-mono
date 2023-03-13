@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# Additional
+.bin
+.obj
+
 # Visual Studio 2022 cache/options directory
 .vs
 

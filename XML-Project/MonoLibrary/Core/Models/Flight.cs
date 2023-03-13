@@ -15,17 +15,18 @@ namespace MonoLibrary.Core.Model
     {
         public Flight()
         {
+            Pricelist = new Dictionary<string, double>();
         }
 
-        public Flight(string departurePlace, string landingPlace, string name, double price, DateTime takeoffDateTime, DateTime landingDateTime, int remainingSeats)
+        public Flight(string departurePlace, string landingPlace, Dictionary<string, double> pricelist, DateTime takeoffDateTime, DateTime landingDateTime, int remainingSeats, int capacity)
         {
             DeparturePlace = departurePlace;
             LandingPlace = landingPlace;
-            Name = name;
-            Price = price;
+            Pricelist = pricelist;
             TakeOffDateTime = takeoffDateTime;
             LandingDateTime = landingDateTime;
             RemainingSeats = remainingSeats;
+            Capacity = capacity;
         }
 
         public override bool Equals(object obj)
@@ -65,13 +66,13 @@ namespace MonoLibrary.Core.Model
         [JsonPropertyName("remaining_seats")]
         public int RemainingSeats { get; set; }
 
-        [BsonElement("name")]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
+        [BsonElement("capacity")]
+        [JsonPropertyName("capacity")]
+        public int Capacity { get; set; }
 
-        [BsonElement("price")]
-        [JsonPropertyName("price")]
-        public double Price { get; set; }
+        [BsonElement("pricelist")]
+        [JsonPropertyName("pricelist")]
+        public Dictionary<string, double> Pricelist { get; set; }
 
     }
 }

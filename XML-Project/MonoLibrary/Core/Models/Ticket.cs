@@ -18,11 +18,12 @@ namespace MonoLibrary.Core.Models
 
         }
 
-        public Ticket(int seatNumber, string userId, int flightId)
+        public Ticket(int seatNumber, string userId, int flightId, double price)
         {
             SeatNumber = seatNumber;
             UserId = userId;
             FlightId = flightId;
+            Price = price;
         }
 
         [BsonElement("seat_number")]
@@ -36,6 +37,10 @@ namespace MonoLibrary.Core.Models
         [BsonElement("flight_id")]
         [JsonPropertyName("flight_id")]
         public int FlightId { get; set; }
+
+        [BsonElement("price")]
+        [JsonPropertyName("price")]
+        public double Price { get; set; }
 
     }
 }
