@@ -1,4 +1,4 @@
-﻿using MonoLibrary.Core.Models.Enums;
+using MonoLibrary.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

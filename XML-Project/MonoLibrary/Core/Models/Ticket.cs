@@ -46,6 +46,5 @@ namespace MonoLibrary.Core.Models
         [BsonElement("additional_luggage")]
         [JsonPropertyName("additional_luggage")]
         public bool AdditionalLuggage { get; set; }
-
     }
 }

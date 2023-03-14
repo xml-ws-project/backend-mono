@@ -92,7 +92,7 @@ namespace MonoLibrary.Core.Model
         [BsonElement("landing_datetime")]
         [JsonPropertyName("landing_datetime")]
         public DateTime LandingDateTime { get; set; }
-
+        
         [BsonElement("pricelist")]
         [JsonPropertyName("pricelist")]
         public Dictionary<PassengerClass, double> Pricelist { get; set; }
@@ -104,5 +104,6 @@ namespace MonoLibrary.Core.Model
         [BsonElement("business_seats")]
         [JsonPropertyName("business_seats")]
         public int[] BusinessSeats { get; set; }
+        
     }
 }

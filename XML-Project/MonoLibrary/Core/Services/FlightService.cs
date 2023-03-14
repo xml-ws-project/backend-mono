@@ -1,4 +1,4 @@
-﻿using MongoDB.Driver;
+using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using MonoLibrary.Core.DbSettings;
 using MonoLibrary.Core.DTOs;

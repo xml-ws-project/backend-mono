@@ -1,4 +1,4 @@
-﻿using MonoLibrary.Core.Models.Enums;
+using MonoLibrary.Core.Models.Enums;
 
 namespace MonoAPI.DTOs.Tickets
 {
