@@ -5,6 +5,7 @@ using MonoLibrary.Core.DTOs;
 using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service.Core;
+using MonoLibrary.Core.Services.Core;
 
 namespace MonoAPI.Controllers
 {
@@ -13,16 +14,18 @@ namespace MonoAPI.Controllers
     public class FlightController : ControllerBase
     {
         private IFlightService _flightService;
-        public FlightController(IFlightService flightService)
+        private IFlightLayoutService _flightLayoutService;
+        public FlightController(IFlightService flightService, IFlightLayoutService flightLayoutService)
         {
             _flightService = flightService;
+            _flightLayoutService = flightLayoutService;
         }
 
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] NewFlightDTO dto)
         {
-            //ovo se treba izmeniti(mozda neki maper)
-            var newFlight = FlightMapper.NewDTOToEntity(dto);
+            var flightLayout = _flightLayoutService.Get(dto.FlightLayoutId);
+            var newFlight = FlightMapper.NewDTOToEntity(dto, flightLayout);
             var result = await _flightService.Add(newFlight);
 
             if (!result)
