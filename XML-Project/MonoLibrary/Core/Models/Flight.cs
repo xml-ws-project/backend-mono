@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Options;
 using MonoLibrary.Core.DbSettings;
 using MonoLibrary.Core.Models.Enums;
 using System;
@@ -95,6 +96,7 @@ namespace MonoLibrary.Core.Model
         
         [BsonElement("pricelist")]
         [JsonPropertyName("pricelist")]
+        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
         public Dictionary<PassengerClass, double> Pricelist { get; set; }
 
         [BsonElement("economy_seats")]

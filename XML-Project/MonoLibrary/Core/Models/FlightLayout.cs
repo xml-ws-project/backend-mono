@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MonoLibrary.Core.DbSettings;
+using MonoLibrary.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,15 @@ using System.Threading.Tasks;
 namespace MonoLibrary.Core.Models
 {
     [BsonCollection("layouts")]
-    public class FlightLayout
+    public class FlightLayout : Entity
     {
-        [BsonElement("layout")]
-        [JsonPropertyName("layout")]
-        public string[]? Layout { get; set; }
+        [BsonElement("economy_layout")]
+        [JsonPropertyName("economy_layout")]
+        public string[]? EconomyLayout { get; set; }
+
+        [BsonElement("business_layout")]
+        [JsonPropertyName("business_layout")]
+        public string[]? BusinessLayout { get; set; }
 
         [BsonElement("number_of_business")]
         [JsonPropertyName("number_of_business")]
@@ -29,9 +34,10 @@ namespace MonoLibrary.Core.Models
 
         }
 
-        public FlightLayout(string[] layout, int numOfBusiness, int numOfEconomy)
+        public FlightLayout(string[] businessLayout, string[] economyLayout, int numOfBusiness, int numOfEconomy)
         {
-            Layout = layout;
+            BusinessLayout = businessLayout;
+            EconomyLayout = economyLayout;
             NumOfBusiness = numOfBusiness;
             NumOfEconomy = numOfEconomy;
         }

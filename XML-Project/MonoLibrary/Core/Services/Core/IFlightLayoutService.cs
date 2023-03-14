@@ -12,5 +12,6 @@ namespace MonoLibrary.Core.Services.Core
     {
         IEnumerable<FlightLayout> GetAll();
         FlightLayout Get(string id);
+        Task<bool> Add(FlightLayout flightLayout);
     }
 }
