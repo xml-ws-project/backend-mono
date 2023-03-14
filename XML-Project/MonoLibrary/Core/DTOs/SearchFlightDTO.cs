@@ -1,4 +1,5 @@
-﻿using System;
+using MonoLibrary.Core.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,21 @@ namespace MonoLibrary.Core.DTOs
     {
         public DateTime TakeOffDate { get; set; }
         public DateTime LandingDate { get; set; }
-        public int? RemainingSeats { get; set; }
+        public int? PreferredSeats { get; set; }
         public string? DeparturePlace { get; set; }
         public string? LandingPlace { get; set; }
+        public PassengerClass PassengerClass { get; set; }
 
         public SearchFlightDTO() {}
 
-        public SearchFlightDTO(DateTime takeOffDate, DateTime landingDate, int remainingSeats, string departurePlace, string landingPlace)
+        public SearchFlightDTO(DateTime takeOffDate, DateTime landingDate, int preferredSeats, string departurePlace, string landingPlace, PassengerClass passengerClass)
         {
             TakeOffDate = takeOffDate;
             LandingDate = landingDate;
-            RemainingSeats = remainingSeats;
+            PreferredSeats = preferredSeats;
             DeparturePlace = departurePlace;
             LandingPlace = landingPlace;
+            PassengerClass = passengerClass;
         }
     }
 }
