@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MonoAPI.AuthToken;
 using MonoAPI.DTOs.Flights;
 using MonoAPI.Mappers;
 using MonoLibrary.Core.DTOs;
@@ -13,9 +16,11 @@ namespace MonoAPI.Controllers
     public class FlightController : ControllerBase
     {
         private IFlightService _flightService;
-        public FlightController(IFlightService flightService)
+        private ITokenService _tokenService;
+        public FlightController(IFlightService flightService, ITokenService tokenService)
         {
             _flightService = flightService;
+            _tokenService = tokenService; 
         }
 
         [HttpPost]
@@ -30,14 +35,21 @@ namespace MonoAPI.Controllers
             return Ok("Flight added.");
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Flight> Get(string id)
         {
-            var flight = _flightService.Get(id);
-            if (flight == null)
-                return NotFound("There is no flight with provided id.");
+            string token = Request.Headers["Authorization"];
+            if (token == null || !_tokenService.ValidateToken(token))
+                return BadRequest("Unable to authorize.");
+            else 
+            {
+                var flight = _flightService.Get(id);
+                if (flight == null)
+                    return NotFound("There is no flight with provided id.");
 
-            return Ok(flight);
+                return Ok(flight);
+            }
         }
 
         [HttpGet]

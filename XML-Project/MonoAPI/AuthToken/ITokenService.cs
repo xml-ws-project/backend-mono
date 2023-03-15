@@ -4,7 +4,7 @@ namespace MonoAPI.AuthToken
 {
     public interface ITokenService
     {
-        Task<string> CreateTokenAsync(string email);
+        Task<string> CreateTokenAsync(string email, string role);
         bool ValidateToken(string token);  
     }
 }

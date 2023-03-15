@@ -90,7 +90,6 @@ D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\r
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll

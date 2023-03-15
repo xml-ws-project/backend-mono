@@ -15,6 +15,10 @@ using MonoLibrary.Core.Service;
 using MonoLibrary.Core.Service.Core;
 using MonoLibrary.Core.Services;
 using MonoLibrary.Core.Services.Core;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace MonoAPI
 {
@@ -59,6 +63,24 @@ namespace MonoAPI
                 (
                     dbSettings.ConnectionString, dbSettings.DatabaseName
                 );
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["ProjectConfiguration:Jwt:Key"])),
+                    ValidIssuer = Configuration["ProjectConfiguration:Jwt:Issuer"],
+                    ValidAudience = Configuration["ProjectConfiguration:Jwt:Audience"],
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                };
+
+
+            });
 
             //Register your services and repositories in this function
             RegisterServices(services);

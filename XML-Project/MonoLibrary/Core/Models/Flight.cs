@@ -1,5 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MonoLibrary.Core.DbSettings;
+using MonoLibrary.Core.Models;
+using MonoLibrary.Core.Models.ApplicationUsers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

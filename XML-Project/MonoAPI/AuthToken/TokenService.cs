@@ -19,7 +19,7 @@ namespace MonoAPI.AuthToken
             _configuration = configuration;
             _userManager = userManager;
         }
-        public async Task<string> CreateTokenAsync(string email)
+        public async Task<string> CreateTokenAsync(string email, string role)
         {
             var key = Encoding.ASCII.GetBytes(_configuration.Jwt.Key);
             var signinCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature);
@@ -31,6 +31,8 @@ namespace MonoAPI.AuthToken
                 {
                     new Claim("id", user.Id),
                     new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Role, role),
+                    new Claim("expiresIn", _configuration.Jwt.ExpiresIn.ToString())
                 }),
 
                 Expires = DateTime.UtcNow.AddMinutes(_configuration.Jwt.ExpiresIn),
@@ -45,8 +47,7 @@ namespace MonoAPI.AuthToken
         public bool ValidateToken(string token)
         {
             token = token.Replace("Bearer ", string.Empty);
-            var mySecret = Encoding.UTF8.GetBytes(_configuration.Jwt.Key);
-            var mySecurityKey = new SymmetricSecurityKey(mySecret);
+            var mySecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.Jwt.Key));
             var handler = new JwtSecurityTokenHandler();
 
             try
@@ -54,8 +55,12 @@ namespace MonoAPI.AuthToken
                 handler.ValidateToken(token,
                 new TokenValidationParameters
                 {
+                    ValidIssuer = _configuration.Jwt.Issuer,
+                    ValidAudience = _configuration.Jwt.Audience,
+                    IssuerSigningKey = mySecurityKey,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = mySecurityKey
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
 
                 }, out SecurityToken validatedToken);
             }
