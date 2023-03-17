@@ -95,6 +95,8 @@ namespace MonoLibrary.Core.Model
         public DateTime LandingDateTime { get; set; }
         
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
+        [BsonElement("pricelist")]
+        [JsonPropertyName("pricelist")]
         public Dictionary<PassengerClass, double> Pricelist { get; set; }
 
         [BsonElement("economy_seats")]
