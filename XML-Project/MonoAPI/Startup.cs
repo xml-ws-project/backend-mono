@@ -126,6 +126,8 @@ namespace MonoAPI
             services.AddScoped<IFlightRepository, FlightRepository>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IFlightLayoutRepository, FlightLayoutRepository>();
+            services.AddScoped<IFlightLayoutService, FlightLayoutService>();
         }
     }
 }

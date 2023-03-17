@@ -8,18 +8,22 @@
         public DateTime LandingDateTime { get; set; }
         public int Capacity { get; set; }
         public Dictionary<string, double> Pricelist { get; set; }
+        public string FlightLayoutId { get; set; }
+        public double BusinessClassPrice { get; set; }
+        public double EconomyClassPrice { get; set; }
+
         public NewFlightDTO()
         {
-            Pricelist = new Dictionary<string, double>();
         }
-        public NewFlightDTO(string departurePlace, string landingPlace, Dictionary<string, double> pricelist, DateTime takeOffDateTime, DateTime landingDateTime, int capacity)
+        public NewFlightDTO(string departurePlace, string landingPlace, DateTime takeOffDateTime, DateTime landingDateTime, string flightLayoutId, double businessClassPrice, double economyClassPrice)
         {
             DeparturePlace = departurePlace;
             LandingPlace = landingPlace;
-            Pricelist= pricelist;
             TakeOffDateTime = takeOffDateTime;
             LandingDateTime = landingDateTime;
-            Capacity = capacity;
+            FlightLayoutId = flightLayoutId;
+            BusinessClassPrice = businessClassPrice;
+            EconomyClassPrice = economyClassPrice;
         }
     }
 }

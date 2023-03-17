@@ -8,6 +8,7 @@ using MonoLibrary.Core.DTOs;
 using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service.Core;
+using MonoLibrary.Core.Services.Core;
 
 namespace MonoAPI.Controllers
 {
@@ -17,16 +18,21 @@ namespace MonoAPI.Controllers
     {
         private IFlightService _flightService;
         private ITokenService _tokenService;
-        public FlightController(IFlightService flightService, ITokenService tokenService)
+        private IFlightLayoutService _flightLayoutService;
+        public FlightController(IFlightLayoutService flightLayoutService,
+                                IFlightService flightService, 
+                                ITokenService tokenService)
         {
+            _flightLayoutService = flightLayoutService;
             _flightService = flightService;
-            _tokenService = tokenService; 
+            _tokenService = tokenService;
         }
 
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] NewFlightDTO dto)
         {
-            var newFlight = FlightMapper.NewDTOToEntity(dto);
+            var flightLayout = _flightLayoutService.Get(dto.FlightLayoutId);
+            var newFlight = FlightMapper.NewDTOToEntity(dto, flightLayout);
             var result = await _flightService.Add(newFlight);
 
             if (!result)
