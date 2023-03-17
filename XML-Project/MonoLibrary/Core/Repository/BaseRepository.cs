@@ -35,7 +35,6 @@ namespace MonoLibrary.Core.Repository
         }
         public virtual IEnumerable<TEntity> GetAll()
         {
-            //var data = _dbSet.Find(Builders<TEntity>.Filter.Eq("deleted", false));
             return _dbSet.Find(x => true).ToList();
         }
         public virtual TEntity Update(TEntity entity) 

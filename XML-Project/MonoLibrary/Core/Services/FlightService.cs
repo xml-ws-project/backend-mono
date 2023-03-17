@@ -1,4 +1,4 @@
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using MonoLibrary.Core.DbSettings;
 using MonoLibrary.Core.DTOs;
@@ -23,7 +23,6 @@ namespace MonoLibrary.Core.Service
         {
             _flightRepository = flightRepository;
         }
-
         public IEnumerable<Flight> SearchFlights(SearchFlightDTO dto)
         {
             var flights = GetAll();

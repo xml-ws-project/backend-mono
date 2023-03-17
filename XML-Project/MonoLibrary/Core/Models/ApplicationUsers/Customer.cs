@@ -12,7 +12,5 @@ namespace MonoLibrary.Core.Models.ApplicationUsers
     [CollectionName("customers")]
     public class Customer : User
     {
-        public List<Ticket>? Tickets { get; set; }
-       
     }
 }

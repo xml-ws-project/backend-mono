@@ -1,5 +1,5 @@
+﻿using MonoLibrary.Core.Context;
 ﻿using MongoDB.Driver;
-using MonoLibrary.Core.Context;
 using MonoLibrary.Core.DTOs;
 using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Repository.Core;
@@ -18,6 +18,5 @@ namespace MonoLibrary.Core.Repository
         {
             _context = context;
         }
-        
     }
 }

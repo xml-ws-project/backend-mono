@@ -20,7 +20,7 @@ namespace MonoLibrary.Core.Services
                            RoleManager<Role> roleManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager; 
+            _signInManager = signInManager;
             _roleManager = roleManager;
         }
         public async Task<IdentityResult> Create(User user, string password, bool isAdmin)
@@ -31,14 +31,14 @@ namespace MonoLibrary.Core.Services
 
             return result;
         }
-        public async Task<IdentityResult> Register(Customer newCustomer, string password) 
+        public async Task<IdentityResult> Register(Customer newCustomer, string password)
         {
             var result = await _userManager.CreateAsync(newCustomer, password);
             await AddToRole(newCustomer.Email, "CUSTOMER");
             return result;
         }
 
-        private async Task AddToRole(string email, string role) 
+        private async Task AddToRole(string email, string role)
         {
             var user = await _userManager.FindByEmailAsync(email);
             await _userManager.AddToRoleAsync(user, role);
@@ -57,12 +57,18 @@ namespace MonoLibrary.Core.Services
 
         public async Task SignIn(User user)
         {
-            await _signInManager.SignInAsync(user, isPersistent : false);
+            await _signInManager.SignInAsync(user, isPersistent: false);
         }
 
         public async Task<User> FindByEmail(string email)
         {
             return await _userManager.FindByEmailAsync(email);
+        }
+        public async Task<string> GetUserRole(string email)
+        {
+            var user = await FindByEmail(email);
+            var role = await _userManager.GetRolesAsync(user);
+            return role.FirstOrDefault() ?? "USER";
         }
     }
 }

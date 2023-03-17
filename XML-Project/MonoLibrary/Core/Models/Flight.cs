@@ -1,6 +1,8 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
 using MonoLibrary.Core.DbSettings;
+using MonoLibrary.Core.Models;
+using MonoLibrary.Core.Models.ApplicationUsers;
 using MonoLibrary.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -30,7 +32,6 @@ namespace MonoLibrary.Core.Model
             EconomySeats = economySeats;
             BusinessSeats = businessSeats;
         }
-
         public override bool Equals(object obj)
         {
             var item = obj as Flight;
@@ -42,7 +43,6 @@ namespace MonoLibrary.Core.Model
 
             return this.Id.Equals(item.Id);
         }
-
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();
@@ -94,8 +94,6 @@ namespace MonoLibrary.Core.Model
         [JsonPropertyName("landing_datetime")]
         public DateTime LandingDateTime { get; set; }
         
-        [BsonElement("pricelist")]
-        [JsonPropertyName("pricelist")]
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
         public Dictionary<PassengerClass, double> Pricelist { get; set; }
 

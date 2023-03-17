@@ -6,6 +6,8 @@
         public string LandingPlace { get; set; }
         public DateTime TakeOffDateTime { get; set; }
         public DateTime LandingDateTime { get; set; }
+        public int Capacity { get; set; }
+        public Dictionary<string, double> Pricelist { get; set; }
         public string FlightLayoutId { get; set; }
         public double BusinessClassPrice { get; set; }
         public double EconomyClassPrice { get; set; }
@@ -13,7 +15,6 @@
         public NewFlightDTO()
         {
         }
-
         public NewFlightDTO(string departurePlace, string landingPlace, DateTime takeOffDateTime, DateTime landingDateTime, string flightLayoutId, double businessClassPrice, double economyClassPrice)
         {
             DeparturePlace = departurePlace;

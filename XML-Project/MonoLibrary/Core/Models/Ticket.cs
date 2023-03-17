@@ -1,5 +1,5 @@
+﻿using MongoDbGenericRepository.Attributes;
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDbGenericRepository.Attributes;
 using MonoLibrary.Core.Model;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,6 @@ namespace MonoLibrary.Core.Models
         {
 
         }
-
         public Ticket(int seatNumber, string userId, int flightId, double price, bool additionalLuggage)
         {
             SeatNumber = seatNumber;
