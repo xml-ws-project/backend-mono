@@ -1,0 +1,169 @@
+﻿using Amazon.Runtime.Internal;
+using Microsoft.AspNetCore.DataProtection;
+using MonoLibrary.Core.DTOs;
+using MonoLibrary.Core.Model;
+using MonoLibrary.Core.Models;
+using MonoLibrary.Core.Models.Enums;
+using MonoLibrary.Core.Repository;
+using MonoLibrary.Core.Repository.Core;
+using MonoLibrary.Core.Service;
+using MonoLibrary.Core.Service.Core;
+using MonoLibrary.Core.Services.Core;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MonoLibrary.Core.Services
+{
+    public class TicketService: BaseService<Ticket>, ITicketService
+    {
+        private readonly ITicketRepository _ticketRepository;
+        private readonly IFlightRepository _flightRepository;
+
+
+        public TicketService(ITicketRepository ticketRepository,IFlightRepository flightRepository) : base(ticketRepository)
+        {
+            _ticketRepository = ticketRepository;
+            _flightRepository = flightRepository;
+        }
+
+        public bool Create(CreateTicketDTO dto)
+        {
+            Flight flight = _flightRepository.Get(dto.FlightId.ToString());
+           
+            
+            if (!CanCreateTickets(flight,dto)) 
+            { 
+                return false; 
+            }
+
+            double price = CalculatePrice(flight, dto);
+            int[] seatNumbers = GenerateSeats(flight, dto);
+
+            for (int i = 0; i <dto.NumberOfTickets; i++) {
+
+                Ticket ticket = new Ticket(seatNumbers[i], dto.UserId, dto.FlightId, price, dto.AdditionalLuggage);
+                _ticketRepository.Add(ticket);
+            }
+            
+            _ticketRepository.Commit();
+
+            return true;
+        }
+
+        private bool CanCreateTickets(Flight flight, CreateTicketDTO dto)
+        {
+            bool areEnoughSetsLeft = CheckIfThereAreSufficientNumberOfSeatsLeft(flight, dto.NumberOfTickets, dto.PassengerClass);
+            bool areSeatsSelectedCorrectly = CheckIfSeatsSelectedCorrectly(flight, dto);
+            if (!areEnoughSetsLeft || !areSeatsSelectedCorrectly)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private bool CheckIfThereAreSufficientNumberOfSeatsLeft(Flight flight, int numberOfTickets, PassengerClass passengerClass)
+        {
+            if (passengerClass == PassengerClass.ECONOMY)
+            {
+                if (numberOfTickets > flight.GetRemainingSeats(true))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (numberOfTickets > flight.GetRemainingSeats(false))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private double CalculatePrice(Flight flight, CreateTicketDTO dto)
+        {
+            double price = CalculatePriceForPassengerClass(flight,dto.PassengerClass);
+            price += CalculateAdditionalCosts(dto.AdditionalLuggage,dto.SeatNumbers);
+            return price;
+        }
+
+        private double CalculatePriceForPassengerClass(Flight flight, PassengerClass passengerClass)
+        {
+            double price = 0;
+            if (passengerClass == PassengerClass.ECONOMY)
+            {
+                price += flight.Pricelist[PassengerClass.ECONOMY];
+            }
+            else
+            {
+                price += flight.Pricelist[PassengerClass.BUSINESS];
+            }
+            return price;
+        }
+        private double CalculateAdditionalCosts(bool additionalLuggage, int[] seatNumber)
+        {
+            double price = 0;
+            if (additionalLuggage)
+            {
+                price += 50;
+            }
+            if(seatNumber != null)
+            {
+                price += 10;
+            }
+            return price;
+        }
+
+        private int[] GenerateSeats(Flight flight,CreateTicketDTO dto)
+        {
+            if (dto.SeatNumbers[0] == -1)
+            {
+                for (int i = 0; i < dto.NumberOfTickets; i++)
+                {
+                    dto.SeatNumbers[i] = flight.TakeFirstFreeSeat(dto.PassengerClass);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dto.SeatNumbers.Length; i++)
+                {
+                    flight.UpdateRemainingSeats(dto.PassengerClass, dto.SeatNumbers[i]);
+                }
+            }
+            _flightRepository.Update(flight);
+            _flightRepository.Commit();
+            return dto.SeatNumbers;
+        }
+        private bool CheckIfSeatsSelectedCorrectly(Flight flight, CreateTicketDTO dto)
+        {
+            if (dto.PassengerClass == PassengerClass.ECONOMY)
+            {
+                return CheckIfSeatNumbersAreCorrect(flight.EconomySeats, dto.SeatNumbers);
+            }
+            else
+            {
+                return CheckIfSeatNumbersAreCorrect(flight.BusinessSeats, dto.SeatNumbers);
+            }
+        }
+
+        private bool CheckIfSeatNumbersAreCorrect(int[] flightSeats, int[] selectedSeats)
+        {
+            for (int i = 0; i < selectedSeats.Length; i++)
+            {
+                int seatNumber = selectedSeats[i];
+                if (flightSeats[seatNumber] == -1)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+       
+
+    }
+}
