@@ -59,7 +59,7 @@ namespace MonoLibrary.Core.Model
         private int GetEconomy()
         {
             int sum = 0;
-            foreach (int i in EconomySeats)
+            for (int i = 0; i <EconomySeats.Length; i++)
             {
                 if (EconomySeats[i] == 0)
                     sum++;
@@ -70,7 +70,7 @@ namespace MonoLibrary.Core.Model
         private int GetBuisiness()
         {
             int sum = 0;
-            foreach (int i in BusinessSeats)
+            for (int i = 0; i < BusinessSeats.Length; i++)
             {
                 if (BusinessSeats[i] == 0)
                     sum++;
