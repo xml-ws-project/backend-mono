@@ -14,6 +14,11 @@ namespace MonoAPI.Mappers
             return new TicketDTO(ticket.Id, ticket.Price, ticket.SeatNumber, ticket.AdditionalLuggage, flight.DeparturePlace, flight.LandingPlace, flight.TakeOffDateTime, flight.LandingDateTime, user.FirstName, user.LastName);
         }
 
+        public static TicketDTO EntityToDTO(Ticket ticket, Flight flight)
+        {
+            return new TicketDTO(ticket.Id, ticket.Price, ticket.SeatNumber, ticket.AdditionalLuggage, flight.DeparturePlace, flight.LandingPlace, flight.TakeOffDateTime, flight.LandingDateTime);
+        }
+
         public static Ticket NewDTOToEntity(NewTicketDTO dto)
         {
             //srediti mapper za pravljenje kreiranje nove karte

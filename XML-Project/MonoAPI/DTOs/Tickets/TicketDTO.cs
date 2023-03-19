@@ -1,4 +1,6 @@
-﻿namespace MonoAPI.DTOs.Tickets
+﻿using MonoLibrary.Core.Models.Enums;
+
+namespace MonoAPI.DTOs.Tickets
 {
     public class TicketDTO
     {
@@ -12,6 +14,7 @@
         public DateTime LandingDateTime { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+
 
         public TicketDTO()
         {
@@ -30,6 +33,18 @@
             LandingDateTime = landingDateTime;
             Firstname = firstname;
             Lastname = lastname;
+        }
+
+        public TicketDTO(string id, double price, int seatNumber, bool additionalLuggage, string departurePlace, string landingPlace, DateTime takeOffDateTime, DateTime landingDateTime)
+        {
+            Id = id;
+            Price = price;
+            SeatNumber = seatNumber;
+            AdditionalLuggage = additionalLuggage;
+            DeparturePlace = departurePlace;
+            LandingPlace = landingPlace;
+            TakeOffDateTime = takeOffDateTime;
+            LandingDateTime = landingDateTime;
         }
     }
 }

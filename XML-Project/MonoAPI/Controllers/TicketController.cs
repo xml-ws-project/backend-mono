@@ -28,20 +28,14 @@ namespace MonoAPI.Controllers
 
         [HttpGet]
         
-        public ActionResult<IEnumerable<Ticket>> GetAll()
+        public ActionResult<IEnumerable<TicketDTO>> GetAll()
         {
             var tickets = _ticketService.GetAll();
             if (tickets == null)
                 return NotFound("There are no tickets found in the system.");
-            //var ticketDTOs = new List<TicketDTO>();
-            //foreach (var ticket in tickets)
-            //{ 
-            //    Flight flight = _flightService.Get(ticket.Id);
-            //    TicketDTO dto = TicketMapper.EntityToDTO(ticket, flight, new User());
-            //    ticketDTOs.Add(dto);
-            //}
+            
 
-            return Ok(tickets);
+            return Ok(GetDTOsFromEntities(tickets));
         }
 
         [HttpPost]
@@ -51,6 +45,18 @@ namespace MonoAPI.Controllers
             return Ok(created);
         }
 
+        private List<TicketDTO> GetDTOsFromEntities(IEnumerable<Ticket> tickets)
+        {
+            var ticketDTOs = new List<TicketDTO>();
+            foreach (var ticket in tickets)
+            {
+                Flight flight = _flightService.Get(ticket.FlightId);
+                TicketDTO dto = TicketMapper.EntityToDTO(ticket, flight);
+                ticketDTOs.Add(dto);
+            }
+            return ticketDTOs;
+
+        }
         
 
     }
