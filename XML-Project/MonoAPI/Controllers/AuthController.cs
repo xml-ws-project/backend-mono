@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MonoAPI.AuthToken;
 using MonoAPI.DTOs.Auth;
 using MonoAPI.DTOs.Users;
+using MonoAPI.Mappers;
 using MonoLibrary.Core.Models;
 using MonoLibrary.Core.Models.ApplicationUsers;
 using MonoLibrary.Core.Services.Core;
@@ -28,15 +29,7 @@ namespace MonoAPI.Controllers
             var user = await _authService.FindByEmail(dto.Email);
             if (ModelState.IsValid && user == null)
             {
-                //Odraditi maper
-                User newUser = new User
-                {
-                    FirstName = dto.FirstName,
-                    LastName = dto.LastName,
-                    UserName = dto.Email,
-                    Email = dto.Email
-                };
-
+                var newUser = UserMapper.DtoToEntity(dto);
                 var result = await _authService.Create(newUser, dto.Password, dto.IsAdmin);
                 if (result.Succeeded)
                 {
@@ -62,14 +55,7 @@ namespace MonoAPI.Controllers
             var user = await _authService.FindByEmail(dto.Email);
             if (ModelState.IsValid && user == null) 
             {
-                Customer newUser = new Customer
-                {
-                    FirstName = dto.FirstName,
-                    LastName = dto.LastName,
-                    UserName = dto.Email,
-                    Email = dto.Email,
-                };
-
+                var newUser = UserMapper.DtoToEntity(dto);
                 var result = await _authService.Register(newUser, dto.Password);
                 await _authService.SignIn(newUser);
                 return Ok("Successful registration.");
