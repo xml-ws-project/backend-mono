@@ -1,8 +1,10 @@
 ﻿using Amazon.Runtime.Internal;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Identity;
 using MonoLibrary.Core.DTOs;
 using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Models;
+using MonoLibrary.Core.Models.ApplicationUsers;
 using MonoLibrary.Core.Models.Enums;
 using MonoLibrary.Core.Repository;
 using MonoLibrary.Core.Repository.Core;
@@ -22,12 +24,13 @@ namespace MonoLibrary.Core.Services
     {
         private readonly ITicketRepository _ticketRepository;
         private readonly IFlightRepository _flightRepository;
+        private readonly UserManager<User> _userManager;
 
-
-        public TicketService(ITicketRepository ticketRepository,IFlightRepository flightRepository) : base(ticketRepository)
+        public TicketService(ITicketRepository ticketRepository,IFlightRepository flightRepository, UserManager<User> userManager) : base(ticketRepository)
         {
             _ticketRepository = ticketRepository;
             _flightRepository = flightRepository;
+            _userManager = userManager;
         }
 
         public bool Create(CreateTicketDTO dto)
@@ -58,7 +61,8 @@ namespace MonoLibrary.Core.Services
         {
             bool areEnoughSetsLeft = CheckIfThereAreSufficientNumberOfSeatsLeft(flight, dto.NumberOfTickets, dto.PassengerClass);
             bool areSeatsSelectedCorrectly = CheckIfSeatsSelectedCorrectly(flight, dto);
-            if (!areEnoughSetsLeft || !areSeatsSelectedCorrectly)
+            bool isNumberOfSelectedSeatsCorrect = CheckIfNumberOfSelectedSeatsIsCorrect(dto.SeatNumbers.Length, dto.NumberOfTickets);
+            if (!areEnoughSetsLeft || !areSeatsSelectedCorrectly || !isNumberOfSelectedSeatsCorrect)
             {
                 return false;
             }
@@ -104,7 +108,7 @@ namespace MonoLibrary.Core.Services
             }
             return price;
         }
-        private double CalculateAdditionalCosts(bool additionalLuggage, int[] seatNumber)
+        private  double CalculateAdditionalCosts(bool additionalLuggage, int[] seatNumber)
         {
             double price = 0;
             if (additionalLuggage)
@@ -120,8 +124,9 @@ namespace MonoLibrary.Core.Services
 
         private int[] GenerateSeats(Flight flight,CreateTicketDTO dto)
         {
-            if (dto.SeatNumbers[0] == -1)
+            if (dto.SeatNumbers.Length == 0)
             {
+                dto.SeatNumbers = new int[dto.NumberOfTickets];
                 for (int i = 0; i < dto.NumberOfTickets; i++)
                 {
                     dto.SeatNumbers[i] = flight.TakeFirstFreeSeat(dto.PassengerClass);
@@ -140,6 +145,10 @@ namespace MonoLibrary.Core.Services
         }
         private bool CheckIfSeatsSelectedCorrectly(Flight flight, CreateTicketDTO dto)
         {
+            if (dto.NumberOfTickets != dto.SeatNumbers.Length)
+            {
+                return false;
+            }
             if (dto.PassengerClass == PassengerClass.ECONOMY)
             {
                 return CheckIfSeatNumbersAreCorrect(flight.EconomySeats, dto.SeatNumbers);
@@ -148,6 +157,15 @@ namespace MonoLibrary.Core.Services
             {
                 return CheckIfSeatNumbersAreCorrect(flight.BusinessSeats, dto.SeatNumbers);
             }
+        }
+
+        private bool CheckIfNumberOfSelectedSeatsIsCorrect(int selectedSeats, int numberOfticfkets)
+        {
+            if (selectedSeats == numberOfticfkets)
+            {
+                return true;
+            }
+            return false;
         }
 
         private bool CheckIfSeatNumbersAreCorrect(int[] flightSeats, int[] selectedSeats)
@@ -162,6 +180,8 @@ namespace MonoLibrary.Core.Services
             }
             return true;
         }
+        
+        
 
        
 
