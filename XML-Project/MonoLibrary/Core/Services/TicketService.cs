@@ -48,7 +48,7 @@ namespace MonoLibrary.Core.Services
 
             for (int i = 0; i <dto.NumberOfTickets; i++) {
 
-                Ticket ticket = new Ticket(seatNumbers[i], dto.UserId, dto.FlightId, price, dto.AdditionalLuggage);
+                Ticket ticket = new Ticket(seatNumbers[i], dto.UserId, dto.FlightId, price, dto.AdditionalLuggage, dto.PassengerClass);
                 _ticketRepository.Add(ticket);
             }
             

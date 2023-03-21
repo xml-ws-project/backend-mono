@@ -14,6 +14,7 @@ namespace MonoAPI.DTOs.Tickets
         public DateTime LandingDateTime { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        public PassengerClass PassengerClass { get; set; }  
 
 
         public TicketDTO()
@@ -21,7 +22,7 @@ namespace MonoAPI.DTOs.Tickets
 
         }
 
-        public TicketDTO(string id, double price, int seatNumber, bool additionalLuggage, string departurePlace, string landingPlace, DateTime takeOffDateTime, DateTime landingDateTime, string firstname, string lastname)
+        public TicketDTO(string id, double price, int seatNumber, bool additionalLuggage, string departurePlace, string landingPlace, DateTime takeOffDateTime, DateTime landingDateTime, string firstname, string lastname, PassengerClass passengerClass)
         {
             Id = id;
             Price = price;
@@ -33,18 +34,7 @@ namespace MonoAPI.DTOs.Tickets
             LandingDateTime = landingDateTime;
             Firstname = firstname;
             Lastname = lastname;
-        }
-
-        public TicketDTO(string id, double price, int seatNumber, bool additionalLuggage, string departurePlace, string landingPlace, DateTime takeOffDateTime, DateTime landingDateTime)
-        {
-            Id = id;
-            Price = price;
-            SeatNumber = seatNumber;
-            AdditionalLuggage = additionalLuggage;
-            DeparturePlace = departurePlace;
-            LandingPlace = landingPlace;
-            TakeOffDateTime = takeOffDateTime;
-            LandingDateTime = landingDateTime;
+            PassengerClass = passengerClass;
         }
     }
 }
