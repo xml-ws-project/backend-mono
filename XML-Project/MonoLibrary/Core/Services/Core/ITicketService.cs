@@ -14,7 +14,7 @@ namespace MonoLibrary.Core.Services.Core
         Task<bool> Add(Ticket ticket);
         Ticket Get(string id);
         bool Create(CreateTicketDTO dto);
-        IEnumerable<Ticket> GetAll();
+        IEnumerable<Ticket> GetActiveTicketsForUser(string id);
         Task<bool> Remove(string id);
     }
 }

@@ -145,7 +145,7 @@ namespace MonoLibrary.Core.Services
         }
         private bool CheckIfSeatsSelectedCorrectly(Flight flight, CreateTicketDTO dto)
         {
-            if (dto.NumberOfTickets != dto.SeatNumbers.Length)
+            if (dto.SeatNumbers.Length != 0 && (dto.NumberOfTickets != dto.SeatNumbers.Length))
             {
                 return false;
             }
@@ -161,7 +161,8 @@ namespace MonoLibrary.Core.Services
 
         private bool CheckIfNumberOfSelectedSeatsIsCorrect(int selectedSeats, int numberOfticfkets)
         {
-            if (selectedSeats == numberOfticfkets)
+            
+            if (selectedSeats == numberOfticfkets || selectedSeats == 0)
             {
                 return true;
             }
@@ -179,6 +180,23 @@ namespace MonoLibrary.Core.Services
                 }
             }
             return true;
+        }
+
+        public IEnumerable<Ticket> GetActiveTicketsForUser(string id)
+        {
+            List<Ticket> tickets = (List<Ticket>)_ticketRepository.GetAllTicketsForUser(id);
+         
+            
+            foreach(Ticket ticket in tickets)
+            {
+                Flight flight = _flightRepository.Get(ticket.FlightId);
+                if (flight.LandingDateTime < DateTime.Now) 
+                {
+                    tickets.Remove(ticket);
+                }
+            }
+            return tickets;
+        
         }
         
         

@@ -9,5 +9,6 @@ namespace MonoLibrary.Core.Repository.Core
 {
     public interface ITicketRepository:IBaseRepository<Ticket>
     {
+        IEnumerable<Ticket> GetAllTicketsForUser(string id);
     }
 }

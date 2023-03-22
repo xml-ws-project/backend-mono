@@ -31,9 +31,9 @@ namespace MonoAPI.Controllers
 
         [HttpGet]
         
-        public ActionResult<IEnumerable<TicketDTO>> GetAll()
+        public ActionResult<IEnumerable<TicketDTO>> GetActiveTicketsForUser(string id)
         {
-            var tickets = _ticketService.GetAll();
+            var tickets = _ticketService.GetActiveTicketsForUser(id);
             if (tickets == null)
                 return NotFound("There are no tickets found in the system.");
             
