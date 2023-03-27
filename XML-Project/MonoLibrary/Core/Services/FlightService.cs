@@ -47,11 +47,11 @@ namespace MonoLibrary.Core.Service
             }
             if (!dto.TakeOffDate.Equals(null) && !dto.TakeOffDate.Equals(default(DateTime)))
             {
-                flights = flights.Where(x => x.TakeOffDateTime.Date.Equals(dto.TakeOffDate.Date));
+                flights = flights.Where(x => x.TakeOffDateTime.Date.Equals(dto.TakeOffDate.Value.Date));
             }
             if (!dto.LandingDate.Equals(null) && !dto.LandingDate.Equals(default(DateTime)))
             {
-                flights = flights.Where(x => x.LandingDateTime.Date.Equals(dto.LandingDate.Date));
+                flights = flights.Where(x => x.LandingDateTime.Date.Equals(dto.LandingDate.Value.Date));
             }
 
             return flights;
