@@ -19,6 +19,7 @@ namespace MonoAPI.Controllers
         private IFlightService _flightService;
         private ITokenService _tokenService;
         private IFlightLayoutService _flightLayoutService;
+
         public FlightController(IFlightLayoutService flightLayoutService,
                                 IFlightService flightService, 
                                 ITokenService tokenService)
@@ -54,7 +55,7 @@ namespace MonoAPI.Controllers
                 if (flight == null)
                     return NotFound("There is no flight with provided id.");
 
-                return Ok(flight);
+                return Ok(FlightMapper.EntityToAdminFlightDTO(flight));
             }
         }
 
@@ -68,16 +69,6 @@ namespace MonoAPI.Controllers
             return Ok(flights);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveAsync(string id) 
-        {
-            var result = await _flightService.Remove(id);
-            if (!result)
-                return BadRequest("Something went wrong, try again later.");
-
-            return Ok("Flight removed.");
-        }
-
         [HttpPost("search")]
         public ActionResult SearchFlights(SearchFlightDTO dto)
         {
@@ -85,6 +76,17 @@ namespace MonoAPI.Controllers
                 return BadRequest();
 
             return Ok(FlightMapper.EntityListToEntityDTOList(_flightService.SearchFlights(dto).ToList()));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id) 
+        {
+            var flight = _flightService.Get(id);
+            if (flight == null)
+                return NotFound("Flight with provided id doesen't exist.");
+
+            var result = await _flightService.Remove(id);
+            return result ? Ok("Flight removed.") : BadRequest("Something went wrong.");
         }
     }
 }
