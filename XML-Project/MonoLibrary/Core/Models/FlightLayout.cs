@@ -29,17 +29,22 @@ namespace MonoLibrary.Core.Models
         [JsonPropertyName("number_of_economy")]
         public int NumOfEconomy { get; set; }
 
+        [BsonElement("name")]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
         public FlightLayout()
         {
 
         }
 
-        public FlightLayout(string[] businessLayout, string[] economyLayout, int numOfBusiness, int numOfEconomy)
+        public FlightLayout(string[] businessLayout, string[] economyLayout, int numOfBusiness, int numOfEconomy, string name)
         {
             BusinessLayout = businessLayout;
             EconomyLayout = economyLayout;
             NumOfBusiness = numOfBusiness;
             NumOfEconomy = numOfEconomy;
+            Name = name;
         }
     }
 }

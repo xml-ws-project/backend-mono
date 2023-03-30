@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MonoAPI.AuthToken;
 using MonoAPI.DTOs.Flights;
 using MonoAPI.Mappers;
@@ -19,14 +20,17 @@ namespace MonoAPI.Controllers
         private IFlightService _flightService;
         private ITokenService _tokenService;
         private IFlightLayoutService _flightLayoutService;
+  
 
         public FlightController(IFlightLayoutService flightLayoutService,
                                 IFlightService flightService, 
-                                ITokenService tokenService)
+                                ITokenService tokenService
+                                )
         {
             _flightLayoutService = flightLayoutService;
             _flightService = flightService;
             _tokenService = tokenService;
+
         }
 
         [HttpPost]
@@ -42,21 +46,21 @@ namespace MonoAPI.Controllers
             return Ok("Flight added.");
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("{id}")]
         public ActionResult<Flight> Get(string id)
         {
-            string token = Request.Headers["Authorization"];
-            if (token == null || !_tokenService.ValidateToken(token))
-                return BadRequest("Unable to authorize.");
-            else 
-            {
+            //string token = Request.Headers["Authorization"];
+            //if (token == null || !_tokenService.ValidateToken(token))
+            //    return BadRequest("Unable to authorize.");
+            //else 
+            //{
                 var flight = _flightService.Get(id);
                 if (flight == null)
                     return NotFound("There is no flight with provided id.");
 
                 return Ok(FlightMapper.EntityToAdminFlightDTO(flight));
-            }
+            //}
         }
 
         [HttpGet]
@@ -86,7 +90,7 @@ namespace MonoAPI.Controllers
                 return NotFound("Flight with provided id doesen't exist.");
 
             var result = await _flightService.Remove(id);
-            return result ? Ok("Flight removed.") : BadRequest("Something went wrong.");
+            return result ? Ok(("Flight removed.").ToJson()) : BadRequest(("Something went wrong.").ToJson());
         }
     }
 }
