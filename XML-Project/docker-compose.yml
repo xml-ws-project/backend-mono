@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  jako:
+    build: .
+    container_name: srbija
+    ports:
+      - "5000:80"
