@@ -185,6 +185,7 @@ namespace MonoLibrary.Core.Services
         public IEnumerable<Ticket> GetActiveTicketsForUser(string id)
         {
             List<Ticket> tickets = (List<Ticket>)_ticketRepository.GetAllTicketsForUser(id);
+            List<Ticket> activeTickets = new List<Ticket>();
          
             
             foreach(Ticket ticket in tickets)
@@ -192,10 +193,11 @@ namespace MonoLibrary.Core.Services
                 Flight flight = _flightRepository.Get(ticket.FlightId);
                 if (flight.LandingDateTime < DateTime.Now) 
                 {
-                    tickets.Remove(ticket);
+                    activeTickets.Add(ticket);
                 }
+
             }
-            return tickets;
+            return activeTickets;
         
         }
         

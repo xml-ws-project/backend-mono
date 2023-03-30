@@ -20,8 +20,8 @@ namespace MonoAPI.Controllers
         private ITicketService _ticketService;
         private IFlightService _flightService;
         private UserManager<User> _userManager;
-        
-        
+
+
         public TicketController(ITicketService ticketService, IFlightService flightService, UserManager<User> userManager)
         {
             _ticketService = ticketService;
@@ -29,7 +29,7 @@ namespace MonoAPI.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         
         public ActionResult<IEnumerable<TicketDTO>> GetActiveTicketsForUser(string id)
         {
