@@ -191,7 +191,7 @@ namespace MonoLibrary.Core.Services
             foreach(Ticket ticket in tickets)
             {
                 Flight flight = _flightRepository.Get(ticket.FlightId);
-                if (flight.LandingDateTime < DateTime.Now) 
+                if (flight.LandingDateTime > DateTime.Now) 
                 {
                     activeTickets.Add(ticket);
                 }
