@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using MonoAPI.AuthToken;
+using MonoAPI.Configuration;
 using MonoLibrary.Core.Context;
 using MonoLibrary.Core.DbSettings;
 using MonoLibrary.Core.Models.ApplicationUsers;
@@ -13,6 +15,10 @@ using MonoLibrary.Core.Service;
 using MonoLibrary.Core.Service.Core;
 using MonoLibrary.Core.Services;
 using MonoLibrary.Core.Services.Core;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace MonoAPI
 {
@@ -46,12 +52,35 @@ namespace MonoAPI
             services.AddSingleton<IDbSettings>(provider => 
                 provider.GetRequiredService<IOptions<DbSettings>>().Value);
 
+            //Binding appsettings.json and ProjectConfiguration
+            ProjectConfiguration config = new ProjectConfiguration();
+            Configuration.Bind("ProjectConfiguration", config);
+            services.AddSingleton(config);
+
             //Identity setup
             var dbSettings = Configuration.GetSection("DbSettings").Get<DbSettings>();
             services.AddIdentity<User, Role>().AddMongoDbStores<User, Role, string>
                 (
-                    dbSettings.ConnectionString , dbSettings.DatabaseName 
+                    dbSettings.ConnectionString, dbSettings.DatabaseName
                 );
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["ProjectConfiguration:Jwt:Key"])),
+                    ValidIssuer = Configuration["ProjectConfiguration:Jwt:Issuer"],
+                    ValidAudience = Configuration["ProjectConfiguration:Jwt:Audience"],
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                };
+
+
+            });
 
             //Register your services and repositories in this function
             RegisterServices(services);
@@ -96,6 +125,7 @@ namespace MonoAPI
             services.AddScoped<IFlightService, FlightService>();
             services.AddScoped<IFlightRepository, FlightRepository>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IFlightLayoutRepository, FlightLayoutRepository>();
             services.AddScoped<IFlightLayoutService, FlightLayoutService>();
             services.AddScoped<ITicketRepository, TicketRepository>();

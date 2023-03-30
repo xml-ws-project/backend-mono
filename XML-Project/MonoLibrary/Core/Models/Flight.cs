@@ -2,6 +2,8 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
 using MonoLibrary.Core.DbSettings;
+using MonoLibrary.Core.Models;
+using MonoLibrary.Core.Models.ApplicationUsers;
 using MonoLibrary.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -31,7 +33,6 @@ namespace MonoLibrary.Core.Model
             EconomySeats = economySeats;
             BusinessSeats = businessSeats;
         }
-
         public override bool Equals(object obj)
         {
             var item = obj as Flight;
@@ -43,7 +44,6 @@ namespace MonoLibrary.Core.Model
 
             return this.Id.Equals(item.Id);
         }
-
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();
@@ -60,7 +60,7 @@ namespace MonoLibrary.Core.Model
         private int GetEconomy()
         {
             int sum = 0;
-            for (int i=0; i <EconomySeats.Length;i++)
+            for (int i=0; i < EconomySeats.Length;i++)
             {
                 if (EconomySeats[i] == 0)
                     sum++;
@@ -71,7 +71,7 @@ namespace MonoLibrary.Core.Model
         private int GetBuisiness()
         {
             int sum = 0;
-            foreach (int i in BusinessSeats)
+            for (int i = 0; i < BusinessSeats.Length; i++)
             {
                 if (BusinessSeats[i] == 0)
                     sum++;
@@ -95,9 +95,9 @@ namespace MonoLibrary.Core.Model
         [JsonPropertyName("landing_datetime")]
         public DateTime LandingDateTime { get; set; }
         
+        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
         [BsonElement("pricelist")]
         [JsonPropertyName("pricelist")]
-        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
         public Dictionary<PassengerClass, double> Pricelist { get; set; }
 
         [BsonElement("economy_seats")]
@@ -107,7 +107,6 @@ namespace MonoLibrary.Core.Model
         [BsonElement("business_seats")]
         [JsonPropertyName("business_seats")]
         public int[] BusinessSeats { get; set; }
-
 
         public int TakeFirstFreeSeat(PassengerClass passengerClass)
         {

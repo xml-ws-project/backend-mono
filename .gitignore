@@ -2,11 +2,13 @@
 *.d
 
 # Additional
-bin/
-obj/
+XML-Project/MonoAPI/bin/
+XML-Project/MonoAPI/obj/
+XML-Project/MonoLibrary/bin/
+XML-Project/MonoLibrary/obj/
 
 # Visual Studio 2022 cache/options directory
-.vs
+XML-Project/.vs
 
 # Compiled Object files
 *.slo

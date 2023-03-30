@@ -1,5 +1,5 @@
+﻿using MonoLibrary.Core.Model;
 ﻿using MonoLibrary.Core.DTOs;
-using MonoLibrary.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +13,8 @@ namespace MonoLibrary.Core.Service.Core
         Task<bool> Add(Flight flight);
         Flight Get(string id);
         IEnumerable<Flight> GetAll();
-        Task<bool> Remove(string id);
         Task<bool> Update(Flight flight);
+        Task<bool> Remove(string id); 
         IEnumerable<Flight> SearchFlights(SearchFlightDTO dto);
         bool UpdateFlight(String id, int[] seats);
     }

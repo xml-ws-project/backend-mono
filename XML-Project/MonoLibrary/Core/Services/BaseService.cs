@@ -1,5 +1,5 @@
+﻿using MonoLibrary.Core.Model;
 ﻿using MongoDB.Driver;
-using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service.Core;
 using System;
@@ -14,7 +14,6 @@ namespace MonoLibrary.Core.Service
     {
 
         protected IBaseRepository<TEntity> _baseRepository;
-
         public BaseService(IBaseRepository<TEntity> baseRepository)
         {
             _baseRepository = baseRepository;

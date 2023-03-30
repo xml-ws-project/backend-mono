@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MonoAPI.AuthToken;
 using MonoAPI.DTOs.Auth;
 using MonoAPI.DTOs.Users;
 using MonoLibrary.Core.Models;
@@ -13,9 +15,11 @@ namespace MonoAPI.Controllers
     public class AuthController : ControllerBase
     {
         private IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private ITokenService _tokenService;
+        public AuthController(IAuthService authService, ITokenService tokenService)
         {
             _authService = authService;
+            _tokenService = tokenService;   
         }
 
         [HttpPost("create")]
@@ -64,8 +68,8 @@ namespace MonoAPI.Controllers
                     LastName = dto.LastName,
                     UserName = dto.Email,
                     Email = dto.Email,
-                    Tickets = new List<Ticket>()
                 };
+
                 var result = await _authService.Register(newUser, dto.Password);
                 await _authService.SignIn(newUser);
                 return Ok("Successful registration.");
@@ -77,6 +81,7 @@ namespace MonoAPI.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDTO dto) 
         {
@@ -85,7 +90,9 @@ namespace MonoAPI.Controllers
                 var result = await _authService.Login(dto.Email, dto.Password, dto.RememberMe);
                 if (result.Succeeded)
                 {
-                    return Ok(result);
+                    var role = await _authService.GetUserRole(dto.Email);
+                    var token = await _tokenService.CreateTokenAsync(dto.Email, role);
+                    return Ok(token);
                 }
                 else if(result.IsNotAllowed)
                 {

@@ -1,5 +1,5 @@
+﻿using MongoDbGenericRepository.Attributes;
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDbGenericRepository.Attributes;
 using MonoLibrary.Core.Model;
 using MonoLibrary.Core.Models.Enums;
 using System;

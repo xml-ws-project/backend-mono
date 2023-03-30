@@ -13,7 +13,6 @@
         public NewFlightDTO()
         {
         }
-
         public NewFlightDTO(string departurePlace, string landingPlace, DateTime takeOffDateTime, DateTime landingDateTime, string flightLayoutId, double businessClassPrice, double economyClassPrice)
         {
             DeparturePlace = departurePlace;
