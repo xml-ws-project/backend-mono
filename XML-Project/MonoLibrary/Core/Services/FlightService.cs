@@ -56,5 +56,14 @@ namespace MonoLibrary.Core.Service
 
             return flights;
         }
+
+        public bool UpdateFlight(String id, int[] seats)
+        {
+            Flight flight = _flightRepository.Get(id);
+            flight.EconomySeats = seats;
+            _flightRepository.Update(flight);
+            _flightRepository.Commit(); 
+            return true;
+        }
     }
 }

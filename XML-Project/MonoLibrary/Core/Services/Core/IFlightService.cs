@@ -13,7 +13,9 @@ namespace MonoLibrary.Core.Service.Core
         Task<bool> Add(Flight flight);
         Flight Get(string id);
         IEnumerable<Flight> GetAll();
+        Task<bool> Update(Flight flight);
         Task<bool> Remove(string id); 
         IEnumerable<Flight> SearchFlights(SearchFlightDTO dto);
+        bool UpdateFlight(String id, int[] seats);
     }
 }

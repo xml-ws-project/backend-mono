@@ -1,6 +1,7 @@
 ﻿using MongoDbGenericRepository.Attributes;
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MonoLibrary.Core.Model;
+using MonoLibrary.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +18,15 @@ namespace MonoLibrary.Core.Models
         {
 
         }
-        public Ticket(int seatNumber, string userId, int flightId, double price, bool additionalLuggage)
+
+        public Ticket(int seatNumber, string userId, string flightId, double price, bool additionalLuggage, PassengerClass passengerClass)
         {
             SeatNumber = seatNumber;
             UserId = userId;
             FlightId = flightId;
             Price = price;
             AdditionalLuggage = additionalLuggage;
+            PassengerClass = passengerClass;
         }
 
         [BsonElement("seat_number")]
@@ -36,7 +39,7 @@ namespace MonoLibrary.Core.Models
 
         [BsonElement("flight_id")]
         [JsonPropertyName("flight_id")]
-        public int FlightId { get; set; }
+        public string FlightId { get; set; }
 
         [BsonElement("price")]
         [JsonPropertyName("price")]
@@ -45,5 +48,9 @@ namespace MonoLibrary.Core.Models
         [BsonElement("additional_luggage")]
         [JsonPropertyName("additional_luggage")]
         public bool AdditionalLuggage { get; set; }
+
+        [BsonElement("passenger_class")]
+        [JsonPropertyName("passenger_class")]
+        public PassengerClass PassengerClass { get; set; }
     }
 }
