@@ -86,5 +86,12 @@ namespace MonoAPI.Controllers
 
             return Ok(FlightMapper.EntityListToEntityDTOList(_flightService.SearchFlights(dto).ToList()));
         }
+
+        [HttpPost("/update")]
+        public  ActionResult<Flight> Update(String id, int[] seats)
+        { 
+            var result = _flightService.UpdateFlight(id,seats);
+            return Ok(result);
+        }
     }
 }

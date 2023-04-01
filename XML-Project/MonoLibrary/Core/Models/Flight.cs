@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using Amazon.Runtime.Internal;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
 using MonoLibrary.Core.DbSettings;
 using MonoLibrary.Core.Models;
@@ -59,7 +60,7 @@ namespace MonoLibrary.Core.Model
         private int GetEconomy()
         {
             int sum = 0;
-            for (int i = 0; i <EconomySeats.Length; i++)
+            for (int i=0; i < EconomySeats.Length;i++)
             {
                 if (EconomySeats[i] == 0)
                     sum++;
@@ -106,6 +107,49 @@ namespace MonoLibrary.Core.Model
         [BsonElement("business_seats")]
         [JsonPropertyName("business_seats")]
         public int[] BusinessSeats { get; set; }
-        
+
+        public int TakeFirstFreeSeat(PassengerClass passengerClass)
+        {
+            int firstFreeSeat = GetFirstFreeSeat(passengerClass);
+            UpdateRemainingSeats(passengerClass,firstFreeSeat);
+            return firstFreeSeat;
+        }
+        public int GetFirstFreeSeat(PassengerClass passengerClass) 
+        {
+            if (passengerClass == PassengerClass.ECONOMY)
+            {
+                return GetSeatPosition(EconomySeats);
+            }
+            else 
+            {
+                return GetSeatPosition(BusinessSeats);        
+            }
+        }
+
+        private int GetSeatPosition(int[] seats)
+        {
+            for (int i = 0; i < seats.Length; i++)
+            {
+                if (seats[i] == 0)
+                    return i;
+            }
+            return -1;
+        }
+
+        public bool UpdateRemainingSeats(PassengerClass passengerClass,int position)
+        {
+            if (passengerClass == PassengerClass.ECONOMY)
+            {
+                EconomySeats[position] = -1;
+                return true;
+            }
+            if (passengerClass == PassengerClass.BUSINESS)
+            {
+                BusinessSeats[position] = -1;
+                return true;
+            }
+            return false;
+        }
+
     }
 }

@@ -11,7 +11,7 @@ namespace MonoAPI.Mappers
     {
         public static TicketDTO EntityToDTO(Ticket ticket, Flight flight, User user)
         {
-            return new TicketDTO(ticket.Id, ticket.Price, ticket.SeatNumber, ticket.AdditionalLuggage, flight.DeparturePlace, flight.LandingPlace, flight.TakeOffDateTime, flight.LandingDateTime, user.FirstName, user.LastName);
+            return new TicketDTO(ticket.Id, ticket.Price, ticket.SeatNumber, ticket.AdditionalLuggage, flight.DeparturePlace, flight.LandingPlace, flight.TakeOffDateTime, flight.LandingDateTime, user.FirstName, user.LastName,ticket.PassengerClass);
         }
 
         public static Ticket NewDTOToEntity(NewTicketDTO dto)

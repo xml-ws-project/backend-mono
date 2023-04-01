@@ -96,3 +96,13 @@ D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\M
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.csproj.CopyComplete
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\MonoAPI.genruntimeconfig.cache
 D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\obj\Debug\net6.0\ref\MonoAPI.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+D:\FTN\IV Godina\XML-Project\backend-mono\XML-Project\MonoAPI\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
