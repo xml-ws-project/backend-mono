@@ -43,6 +43,10 @@ namespace MonoLibrary.Core.Service
                 else
                 {
                     flights = flights.Where(x => x.GetRemainingSeats(false) >= dto.PreferredSeats);
+                    if (flights == null)
+                    {
+                        return null;
+                    }
                 }
             }
             if (!dto.TakeOffDate.Equals(null) && !dto.TakeOffDate.Equals(default(DateTime)))

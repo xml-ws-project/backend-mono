@@ -11,7 +11,7 @@ namespace MonoLibrary.Core.DTOs
     {
         public DateTime? TakeOffDate { get; set; }
         public DateTime? LandingDate { get; set; }
-        public int? PreferredSeats { get; set; }
+        public int? PreferredSeats { get; set; } = 1;
         public string? DeparturePlace { get; set; }
         public string? LandingPlace { get; set; }
         public PassengerClass PassengerClass { get; set; }

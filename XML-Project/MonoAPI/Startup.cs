@@ -92,7 +92,7 @@ namespace MonoAPI
             app.UseCors(builder =>
             {
                 builder
-                    .AllowAnyOrigin()
+                    .WithOrigins("*")
                     .AllowAnyHeader()
                     .AllowAnyMethod();
             });

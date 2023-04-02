@@ -83,8 +83,8 @@ namespace MonoAPI.Controllers
         {
             if (dto == null)
                 return BadRequest();
-
-            return Ok(FlightMapper.EntityListToEntityDTOList(_flightService.SearchFlights(dto).ToList()));
+            var flights = _flightService.SearchFlights(dto).ToList();
+            return Ok(FlightMapper.EntityListToEntityDTOList(flights));
         }
 
         [HttpPost("/update")]
