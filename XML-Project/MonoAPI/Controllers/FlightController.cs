@@ -20,10 +20,10 @@ namespace MonoAPI.Controllers
         private IFlightService _flightService;
         private ITokenService _tokenService;
         private IFlightLayoutService _flightLayoutService;
-  
+
 
         public FlightController(IFlightLayoutService flightLayoutService,
-                                IFlightService flightService, 
+                                IFlightService flightService,
                                 ITokenService tokenService
                                 )
         {
@@ -34,7 +34,7 @@ namespace MonoAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAsync( NewFlightDTO dto)
+        public async Task<IActionResult> AddAsync(NewFlightDTO dto)
         {
             var flightLayout = _flightLayoutService.Get(dto.FlightLayoutId);
             var newFlight = FlightMapper.NewDTOToEntity(dto, flightLayout);
@@ -46,7 +46,7 @@ namespace MonoAPI.Controllers
             return Ok("Flight added.");
         }
 
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "ADMIN, CUSTOMER")]
         [HttpGet("{id}")]
         public ActionResult<Flight> Get(string id)
         {
