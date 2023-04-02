@@ -46,21 +46,21 @@ namespace MonoAPI.Controllers
             return Ok("Flight added.");
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Flight> Get(string id)
         {
-            //string token = Request.Headers["Authorization"];
-            //if (token == null || !_tokenService.ValidateToken(token))
-            //    return BadRequest("Unable to authorize.");
-            //else 
-            //{
+            string token = Request.Headers["Authorization"];
+            if (token == null || !_tokenService.ValidateToken(token))
+                return BadRequest("Unable to authorize.");
+            else 
+            {
                 var flight = _flightService.Get(id);
                 if (flight == null)
                     return NotFound("There is no flight with provided id.");
 
                 return Ok(FlightMapper.EntityToAdminFlightDTO(flight));
-            //}
+            }
         }
 
         [HttpGet]
@@ -82,8 +82,9 @@ namespace MonoAPI.Controllers
             return Ok(FlightMapper.EntityListToEntityDTOList(_flightService.SearchFlights(dto).ToList()));
         }
 
+
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id) 
+        public async Task<IActionResult> Delete(string id)
         {
             var flight = _flightService.Get(id);
             if (flight == null)
@@ -91,6 +92,14 @@ namespace MonoAPI.Controllers
 
             var result = await _flightService.Remove(id);
             return result ? Ok(("Flight removed.").ToJson()) : BadRequest(("Something went wrong.").ToJson());
+        }
+
+        [HttpPost("/update")]
+        public  ActionResult<Flight> Update(String id, int[] seats)
+        { 
+            var result = _flightService.UpdateFlight(id,seats);
+            return Ok(result);
+
         }
     }
 }
