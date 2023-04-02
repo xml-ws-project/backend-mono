@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MonoAPI.AuthToken;
 using MonoAPI.DTOs.Flights;
 using MonoAPI.Mappers;
@@ -19,17 +20,21 @@ namespace MonoAPI.Controllers
         private IFlightService _flightService;
         private ITokenService _tokenService;
         private IFlightLayoutService _flightLayoutService;
+
+
         public FlightController(IFlightLayoutService flightLayoutService,
-                                IFlightService flightService, 
-                                ITokenService tokenService)
+                                IFlightService flightService,
+                                ITokenService tokenService
+                                )
         {
             _flightLayoutService = flightLayoutService;
             _flightService = flightService;
             _tokenService = tokenService;
+
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] NewFlightDTO dto)
+        public async Task<IActionResult> AddAsync(NewFlightDTO dto)
         {
             var flightLayout = _flightLayoutService.Get(dto.FlightLayoutId);
             var newFlight = FlightMapper.NewDTOToEntity(dto, flightLayout);
@@ -41,7 +46,7 @@ namespace MonoAPI.Controllers
             return Ok("Flight added.");
         }
 
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "ADMIN, CUSTOMER")]
         [HttpGet("{id}")]
         public ActionResult<Flight> Get(string id)
         {
@@ -54,7 +59,7 @@ namespace MonoAPI.Controllers
                 if (flight == null)
                     return NotFound("There is no flight with provided id.");
 
-                return Ok(flight);
+                return Ok(FlightMapper.EntityToAdminFlightDTO(flight));
             }
         }
 
@@ -68,16 +73,6 @@ namespace MonoAPI.Controllers
             return Ok(flights);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveAsync(string id) 
-        {
-            var result = await _flightService.Remove(id);
-            if (!result)
-                return BadRequest("Something went wrong, try again later.");
-
-            return Ok("Flight removed.");
-        }
-
         [HttpPost("search")]
         public ActionResult SearchFlights(SearchFlightDTO dto)
         {
@@ -87,11 +82,24 @@ namespace MonoAPI.Controllers
             return Ok(FlightMapper.EntityListToEntityDTOList(_flightService.SearchFlights(dto).ToList()));
         }
 
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var flight = _flightService.Get(id);
+            if (flight == null)
+                return NotFound("Flight with provided id doesen't exist.");
+
+            var result = await _flightService.Remove(id);
+            return result ? Ok(("Flight removed.").ToJson()) : BadRequest(("Something went wrong.").ToJson());
+        }
+
         [HttpPost("/update")]
         public  ActionResult<Flight> Update(String id, int[] seats)
         { 
             var result = _flightService.UpdateFlight(id,seats);
             return Ok(result);
+
         }
     }
 }
