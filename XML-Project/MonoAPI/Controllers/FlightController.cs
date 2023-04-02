@@ -34,7 +34,7 @@ namespace MonoAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] NewFlightDTO dto)
+        public async Task<IActionResult> AddAsync( NewFlightDTO dto)
         {
             var flightLayout = _flightLayoutService.Get(dto.FlightLayoutId);
             var newFlight = FlightMapper.NewDTOToEntity(dto, flightLayout);
