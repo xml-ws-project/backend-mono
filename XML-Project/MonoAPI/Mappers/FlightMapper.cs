@@ -30,5 +30,14 @@ namespace MonoAPI.Mappers
             flights.ForEach(x => dtoList.Add(EntityToDTO(x)));
             return dtoList;
         }
+
+        public static AdminFlightDTO EntityToAdminFlightDTO(Flight flight) 
+        {
+            AdminFlightDTO dto = new AdminFlightDTO();
+            dto.FlightDTO = EntityToDTO(flight);
+            dto.RemainingEconomy = flight.GetRemainingSeats(true);
+            dto.RemainingBussines = flight.GetRemainingSeats(false);
+            return dto;
+        }
     }
 }

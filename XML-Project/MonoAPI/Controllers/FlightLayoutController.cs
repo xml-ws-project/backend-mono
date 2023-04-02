@@ -20,7 +20,7 @@ namespace MonoAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] NewFlightLayoutDTO dto)
         {
-            var result = await _flightLayoutService.Add(new FlightLayout(dto.BusinessLayout, dto.EconomyLayout, dto.NumOfBusiness, dto.NumOfEconomy));
+            var result = await _flightLayoutService.Add(new FlightLayout(dto.BusinessLayout, dto.EconomyLayout, dto.NumOfBusiness, dto.NumOfEconomy, dto.Name));
 
             if (!result)
                 return BadRequest("Something went wrong, try again later");

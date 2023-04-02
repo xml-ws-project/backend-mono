@@ -26,6 +26,7 @@ namespace MonoLibrary.Core.Service
         public IEnumerable<Flight> SearchFlights(SearchFlightDTO dto)
         {
             var flights = GetAll();
+            flights = flights.Where(x => x.Deleted == false).ToArray();
             if (!string.IsNullOrWhiteSpace(dto.DeparturePlace))
             {
                 flights = flights.Where(x => x.DeparturePlace.ToLower().Contains(dto.DeparturePlace.ToLower()));
