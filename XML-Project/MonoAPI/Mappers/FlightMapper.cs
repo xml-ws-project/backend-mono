@@ -39,16 +39,5 @@ namespace MonoAPI.Mappers
             dto.RemainingBussines = flight.GetRemainingSeats(false);
             return dto;
         }
-
-        public static ReservationFlightResponse EntityToReservationResponse(List<Flight> start, List<Flight> end) 
-        {
-            var response = new ReservationFlightResponse();
-            var startList = EntityListToEntityDTOList(start);
-            var endList = EntityListToEntityDTOList(end);
-            response.Start = startList;
-            response.End = endList;
-            
-            return response;
-        }
     }
 }
