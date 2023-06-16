@@ -100,7 +100,7 @@ namespace MonoAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("for/reservation")]
+        [HttpPut("for/reservation")]
         public ActionResult<IEnumerable<FlightDTO>> ReservationFlights(ReservationFlightRequest request)
         {
             var result = _flightService.FindReservationFlights(request);

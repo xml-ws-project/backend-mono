@@ -72,12 +72,18 @@ namespace MonoLibrary.Core.Service
         }
         public List<Flight> FindReservationFlights(ReservationFlightRequest request)
         {
-            var flights = GetAll().Where(flight => flight.DeparturePlace.Equals(request.DeparturePlace) &&
+            var startFlights = GetAll().Where(flight => flight.DeparturePlace.Equals(request.DeparturePlace) &&
                                          flight.LandingPlace.Equals(request.LandingPlace) &&
                                          flight.TakeOffDateTime.Date.ToString("yyyy-MM-dd").Equals(request.Start) && 
-                                         flight.LandingDateTime.Date.ToString("yyyy-MM-dd").Equals(request.End) &&
                                          flight.EconomySeats.Length > request.NumberOfSeats);
-            return flights.ToList();
+            
+            var endFlights = GetAll().Where(flight => flight.DeparturePlace.Equals(request.LandingPlace) &&
+                                         flight.LandingPlace.Equals(request.DeparturePlace) &&
+                                         flight.TakeOffDateTime.Date.ToString("yyyy-MM-dd").Equals(request.End) &&
+                                         flight.EconomySeats.Length > request.NumberOfSeats);
+
+            return startFlights.Concat(endFlights).ToList();
+
         }                
     }
 }
