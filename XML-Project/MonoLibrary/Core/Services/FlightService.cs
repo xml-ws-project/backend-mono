@@ -83,6 +83,7 @@ namespace MonoLibrary.Core.Service
                                          flight.EconomySeats.Length > request.NumberOfSeats);
 
             return startFlights.Concat(endFlights).ToList();
+
         }                
     }
 }
