@@ -19,6 +19,6 @@ namespace MonoLibrary.Core.Service.Core
         IEnumerable<Flight> SearchFlights(SearchFlightDTO dto);
         bool UpdateFlight(String id, int[] seats);
         List<Flight> ReservationFlightsStart(string start, string departure, int numOfSeats);
-        List<Flight> ReservationFlightsEnd(DateOnly end, string landing, int numOfSeats);
+        List<Flight> ReservationFlightsEnd(string end, string landing, int numOfSeats);
     }
 }

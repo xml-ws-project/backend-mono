@@ -101,12 +101,12 @@ namespace MonoAPI.Controllers
         }
 
         [HttpGet("for/reservation")]
-        public ActionResult<IEnumerable<Flight>> ReservationFlights(ReservationFlightRequest request)
+        public ActionResult<IEnumerable<FlightDTO>> ReservationFlights(ReservationFlightRequest request)
         {
             var startFlights = _flightService.ReservationFlightsStart(request.Start, request.DeparturePlace, request.NumberOfSeats);
-            //var endFlights = _flightService.ReservationFlightsEnd(request.End, request.LandingPlace, request.NumberOfSeats);
+            var endFlights = _flightService.ReservationFlightsEnd(request.End, request.LandingPlace, request.NumberOfSeats);
 
-            return Ok(startFlights);
+            return Ok(FlightMapper.EntityToReservationResponse(startFlights, endFlights));
         }
     }
 }

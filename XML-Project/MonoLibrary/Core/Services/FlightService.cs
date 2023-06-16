@@ -77,9 +77,11 @@ namespace MonoLibrary.Core.Service
             return flights.ToList();
         }                
 
-        public List<Flight> ReservationFlightsEnd(DateOnly end, string landing, int numOfSeats)
+        public List<Flight> ReservationFlightsEnd(string end, string landing, int numOfSeats)
         {
-            throw new NotImplementedException();
+            var flights = GetAll().Where(flight => flight.DeparturePlace.Equals(landing) &&
+            flight.TakeOffDateTime.Date.ToString("yyyy-MM-dd").Equals(end) && flight.EconomySeats.Length > numOfSeats);
+            return flights.ToList();
         }
     }
 }
