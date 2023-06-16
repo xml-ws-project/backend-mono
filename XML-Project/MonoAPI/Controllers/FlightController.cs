@@ -7,7 +7,6 @@ using MonoAPI.DTOs.Flights;
 using MonoAPI.Mappers;
 using MonoLibrary.Core.DTOs;
 using MonoLibrary.Core.Model;
-using MonoLibrary.Core.Repository.Core;
 using MonoLibrary.Core.Service.Core;
 using MonoLibrary.Core.Services.Core;
 
@@ -99,7 +98,15 @@ namespace MonoAPI.Controllers
         { 
             var result = _flightService.UpdateFlight(id,seats);
             return Ok(result);
+        }
 
+        [HttpGet("for/reservation")]
+        public ActionResult<IEnumerable<Flight>> ReservationFlights(ReservationFlightRequest request)
+        {
+            var startFlights = _flightService.ReservationFlightsStart(request.Start, request.DeparturePlace, request.NumberOfSeats);
+            //var endFlights = _flightService.ReservationFlightsEnd(request.End, request.LandingPlace, request.NumberOfSeats);
+
+            return Ok(startFlights);
         }
     }
 }
