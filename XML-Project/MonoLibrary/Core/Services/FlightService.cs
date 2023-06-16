@@ -70,5 +70,18 @@ namespace MonoLibrary.Core.Service
             _flightRepository.Commit(); 
             return true;
         }
+        public List<Flight> ReservationFlightsStart(string start, string departure, int numOfSeats)
+        {
+            var flights = GetAll().Where(flight => flight.DeparturePlace.Equals(departure) && 
+            flight.TakeOffDateTime.Date.ToString("yyyy-MM-dd").Equals(start) && flight.EconomySeats.Length > numOfSeats);
+            return flights.ToList();
+        }                
+
+        public List<Flight> ReservationFlightsEnd(string end, string landing, int numOfSeats)
+        {
+            var flights = GetAll().Where(flight => flight.DeparturePlace.Equals(landing) &&
+            flight.TakeOffDateTime.Date.ToString("yyyy-MM-dd").Equals(end) && flight.EconomySeats.Length > numOfSeats);
+            return flights.ToList();
+        }
     }
 }

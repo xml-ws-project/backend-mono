@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Amazon.Runtime.Internal;
 
 namespace MonoLibrary.Core.Service.Core
 {
@@ -17,5 +18,7 @@ namespace MonoLibrary.Core.Service.Core
         Task<bool> Remove(string id); 
         IEnumerable<Flight> SearchFlights(SearchFlightDTO dto);
         bool UpdateFlight(String id, int[] seats);
+        List<Flight> ReservationFlightsStart(string start, string departure, int numOfSeats);
+        List<Flight> ReservationFlightsEnd(string end, string landing, int numOfSeats);
     }
 }
