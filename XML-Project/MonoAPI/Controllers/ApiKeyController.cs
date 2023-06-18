@@ -42,7 +42,7 @@ namespace MonoAPI.Controllers
             return Ok(ApiKeyMapper.EntityToDtoList(keys));
         }
 
-        [HttpPost("validate/{value}")]
+        [HttpPut("validate/{value}")]
         public ActionResult<bool> ValidateKey(string value) 
         {
             var response = _apiKeyService.Validate(value);
