@@ -37,7 +37,7 @@ namespace MonoLibrary.Core.Services
 
             return apiKey;
         }
-        public ApiKey GetByUserId(string userId)
+        public List<ApiKey> GetByUserId(string userId)
         {
             return _apiKeyRepository.GetByUserId(userId);
         }
@@ -45,6 +45,15 @@ namespace MonoLibrary.Core.Services
         public List<ApiKey> GetAll()
         {
             return _apiKeyRepository.GetAll().ToList();
+        }
+
+        public bool Validate(string value)
+        {
+            var key = _apiKeyRepository.GetByKeyValue(value);
+            if(key == null || !key.CheckIfActive())
+                   return false;
+
+            return true;
         }
     }
 }

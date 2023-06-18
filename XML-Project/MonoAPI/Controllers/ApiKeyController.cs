@@ -35,12 +35,18 @@ namespace MonoAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<List<ApiKeyResponse>> GetByUserId(string id)
         {
-            var key = _apiKeyService.GetByUserId(id);
-            if (key == null)
+            var keys = _apiKeyService.GetByUserId(id);
+            if (keys == null)
                 return NotFound();
 
-            return Ok(ApiKeyMapper.EntityToDto(key));
+            return Ok(ApiKeyMapper.EntityToDtoList(keys));
         }
 
+        [HttpPost("validate/{value}")]
+        public ActionResult<bool> ValidateKey(string value) 
+        {
+            var response = _apiKeyService.Validate(value);
+            return response ? Ok(response) : NotFound(response);
+        }
     }
 }

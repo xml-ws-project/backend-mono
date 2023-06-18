@@ -24,10 +24,10 @@ namespace MonoLibrary.Core.Models
         [BsonElement("expire_in")]
         [JsonPropertyName("expire_in")]
         public int ExpireIn { get; set; }
-        private bool CheckIfActive() 
+        public bool CheckIfActive() 
         {
            if (ExpireIn == 0) return true;
-           return DateTime.Now > Created.AddMinutes(ExpireIn) ?  false : true;
+           return DateTime.Now > Created.AddMinutes(120 + ExpireIn) ?  false : true;
         }
     }
 }

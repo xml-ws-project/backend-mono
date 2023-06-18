@@ -17,9 +17,14 @@ namespace MonoLibrary.Core.Repository
             _context = context;
         }
     
-        public ApiKey GetByUserId(string userId) 
+        public List<ApiKey> GetByUserId(string userId) 
         {
-            return GetAll().Where(key => key.UserId.Equals(userId)).FirstOrDefault();
+            return GetAll().Where(key => key.UserId.Equals(userId)).ToList();
+        }
+
+        public ApiKey GetByKeyValue(string value)
+        {
+            return GetAll().Where(key => key.Key.Equals(value)).FirstOrDefault();
         }
     }
 }
