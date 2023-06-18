@@ -12,7 +12,7 @@ namespace MonoAPI.Mappers
                 Id = key.Id,
                 UserId = key.UserId,
                 Key = key.Key,
-                ExpireDate = key.Created.AddMinutes(key.ExpireIn)
+                ExpireDate = key.Created.AddMinutes(120 + key.ExpireIn).ToString("dd.MM.yyyy | HH:mm")
             };
 
             return response;

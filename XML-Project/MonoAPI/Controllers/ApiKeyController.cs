@@ -33,9 +33,12 @@ namespace MonoAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<List<ApiKeyResponse>> Get(string id)
+        public ActionResult<List<ApiKeyResponse>> GetByUserId(string id)
         {
-            var key = _apiKeyService.GetById(id);
+            var key = _apiKeyService.GetByUserId(id);
+            if (key == null)
+                return NotFound();
+
             return Ok(ApiKeyMapper.EntityToDto(key));
         }
 

@@ -9,5 +9,6 @@ namespace MonoLibrary.Core.Repository.Core
 {
     public interface IApiKeyRepository : IBaseRepository<ApiKey>
     {
+        ApiKey GetByUserId(string userId);
     }
 }

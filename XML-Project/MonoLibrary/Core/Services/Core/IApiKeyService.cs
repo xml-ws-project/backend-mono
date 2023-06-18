@@ -9,7 +9,7 @@ namespace MonoLibrary.Core.Services.Core
 {
     public interface IApiKeyService
     {
-        ApiKey GetById(string id);
+        ApiKey GetByUserId(string id);
         List<ApiKey> GetAll();
         ApiKey Create(string userId, int expireIn);
     }
