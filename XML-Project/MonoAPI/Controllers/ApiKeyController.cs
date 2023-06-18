@@ -46,7 +46,7 @@ namespace MonoAPI.Controllers
         public ActionResult<bool> ValidateKey(string value) 
         {
             var response = _apiKeyService.Validate(value);
-            return response ? Ok(response) : NotFound(response);
+            return response;
         }
     }
 }
