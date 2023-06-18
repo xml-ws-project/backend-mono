@@ -14,6 +14,7 @@ namespace MonoLibrary.Core.Repository
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         protected readonly IMongoDbContext _context;
+
         protected IMongoCollection<TEntity> _dbSet { get; private set; }
 
         public BaseRepository(IMongoDbContext context)

@@ -1,8 +1,4 @@
-﻿using AspNetCore.Identity.MongoDbCore.Infrastructure;
-using AspNetCore.Identity.MongoDbCore.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MonoAPI.AuthToken;
 using MonoAPI.Configuration;
@@ -15,7 +11,6 @@ using MonoLibrary.Core.Service;
 using MonoLibrary.Core.Service.Core;
 using MonoLibrary.Core.Services;
 using MonoLibrary.Core.Services.Core;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -130,6 +125,8 @@ namespace MonoAPI
             services.AddScoped<IFlightLayoutService, FlightLayoutService>();
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<ITicketService, TicketService>();
+            services.AddScoped<IApiKeyRepository, ApiKeyRepository>();
+            services.AddScoped<IApiKeyService, ApiKeyService>();
         }
     }
 }
