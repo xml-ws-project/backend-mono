@@ -1,7 +1,7 @@
 version: "3.9"
 services:
-  srpija:
+  vima-airline:
     build: .
-    container_name: srbija
+    container_name: vima-airline
     ports:
-      - "5000:80"
+      - "5159:80"
